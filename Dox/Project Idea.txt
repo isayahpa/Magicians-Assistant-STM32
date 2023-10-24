@@ -1,0 +1,3 @@
+My idea for a project would be an automatic card shuffler. The device would take a stack of cards and randomly shuffle them without bending the cards. 
+This device would be useful for trading card games that use expensive cards that players don't want to bend or fold as well as regular card players that don't want to try to shuffle their decks by hand.
+Perhaps at the end of the shuffle the device could also deal out X amount of hands for the players to grab at the end. 
