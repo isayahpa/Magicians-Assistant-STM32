@@ -1,0 +1,3 @@
+../Core/Src/ArducamController.cpp:10:1:ArducamController::ArducamController()	16	static
+../Core/Src/ArducamController.cpp:15:1:ArducamController::~ArducamController()	16	static
+../Core/Src/ArducamController.cpp:15:1:virtual ArducamController::~ArducamController()	16	static
