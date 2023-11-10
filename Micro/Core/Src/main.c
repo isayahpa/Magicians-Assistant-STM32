@@ -21,12 +21,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "cstdio"
+#include <stdio.h>
+#include <string.h>
+#include "ArducamController.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
 
 /* USER CODE END PTD */
 
@@ -47,7 +48,6 @@ I2C_HandleTypeDef hi2c1;
 
 SPI_HandleTypeDef hspi1;
 
-UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -60,13 +60,25 @@ static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
+//Lets me use printf()
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  return ch;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 int checkBit(uint8_t num, int index){
 	return (int) ((num >> index) & 1);
 }
@@ -74,143 +86,6 @@ int checkBit(uint8_t num, int index){
 void serialPrint(uint8_t* msg, uint16_t size){
 	HAL_UART_Transmit(&huart2, msg, size, TIMEOUT);
 }
-
-struct ArducamController{
-	// The chip select signal should always be LOW during the SPI read or write bus cycle
-	//https://www.uctronics.com/download/Amazon/ArduCAM_Mini_2MP_Camera_Shield_Hardware_Application_Note.pdf
-	//I2C Settings Registers
-	uint8_t I2C_ADDR_WRITE = 0x60;
-	uint8_t I2C_ADDR_READ = 0x61;
-	uint8_t TEST_REGISTER = 0x00;
-	uint8_t CAPTURE_CONTROL_REG = 0x01; // Bits[2:0] = number of frames to be captured
-	uint8_t SENSOR_INTERFACE_TIMING_REG = 0x03; // Bit[0]: Sensor H-sync Polarity, 0 = active high, 1 = active low,
-												// Bit[1]: Sensor V-sync Polarity 0 = active high, 1 = active low
-												// Bit[3]: Sensor data delay 0 = no delay, 1= delay 1 PCLK
-												// Bit[4]: FIFO mode control, 0 = FIFO mode disable, 1 = enable FIFO mode
-												// Bit[6]: low power mode control, 0 = normal mode, 1 = low power mode
-	uint8_t FIFO_CONTROL_REG = 0x04; // Bit[0]: ‘1’ - clear FIFO write done flag, Bit[1]: write ‘1’ to start capture
-									 // Bit[4]: write ‘1’ to reset FIFO write pointer Bit[5]: write ‘1’ to reset FIFO read pointer
-	uint8_t FIFO_SINGLE_READ_REG = 0x3D; //RO
-	uint8_t FIFO_STATUS_REG = 0x41; // Bit[0]: camera v-sync pin status, Bit[3]: camera write FIFO done flag
-	uint8_t FIFO_BYTE0 = 0x42;
-	uint8_t FIFO_BYTE1 = 0x43;
-	uint8_t FIFO_BYTE2 = 0x44;
-
-	uint8_t FIFO_FLAG_CLR = 0b00000001;
-	uint8_t FIFO_PTR_CLR = 0b00110000;
-	uint8_t SET_CAPTURE_FLAG = 0b00000010;
-
-	//SPI Settings
-	int SPI_CLK_HZ = 80000;
-	I2C_HandleTypeDef* i2cHandle;
-	SPI_HandleTypeDef* spiHandle;
-
-public:
-	ArducamController(I2C_HandleTypeDef* pHandleI2C, SPI_HandleTypeDef* pHandleSPI){
-		i2cHandle = pHandleI2C;
-		spiHandle = pHandleSPI;
-		initSensor();
-	}
-
-	void initSensor(){
-		printf("Initializing ArduCam");
-		HAL_GPIO_WritePin(CAM_CS_GPIO_Port, CAM_CS_Pin, GPIO_PIN_RESET); //CS LOW to configure
-		uint8_t cmd = 0b00000001; //Capture 1 Frame per Capture
-
-		resetFIFOPointers();
-		clearFIFOFlag();
-		i2cRegWrite(CAPTURE_CONTROL_REG, &cmd, 1);
-		HAL_GPIO_WritePin(CAM_CS_GPIO_Port, CAM_CS_Pin, GPIO_PIN_SET); //CS HIGH when finished
-
-	}
-
-	/*To Write over i2c:
-	* Request I2C_ADDR_WRITE -> Send Cam Register Address (left shift device addr's by 1) -> Send Data bytes
-	*/
-	HAL_StatusTypeDef i2cRegWrite(uint8_t reg, uint8_t *pData, uint16_t size){
-		HAL_StatusTypeDef status;
-		status = HAL_I2C_Master_Transmit(i2cHandle, I2C_ADDR_WRITE<<1, &reg, 1, TIMEOUT);
-		status = HAL_I2C_Master_Transmit(i2cHandle, I2C_ADDR_WRITE<<1, pData, size, TIMEOUT);
-		return status;
-	}
-
-	/*To Read over i2c:
-		* To I2C_ADDR_WRITE: Write the Register You want to read from
-		* To I2C_ADDR_READ: Read as much data as you want
-	*/
-	HAL_StatusTypeDef i2cRegRead(uint8_t reg, uint8_t *pBuffer, uint16_t size){
-		HAL_StatusTypeDef status;
-		status = HAL_I2C_Master_Transmit(i2cHandle, I2C_ADDR_WRITE<<1, &reg, 1, TIMEOUT);
-		status = HAL_I2C_Master_Receive(i2cHandle, I2C_ADDR_READ<<1, pBuffer, size, TIMEOUT);
-		return status;
-	}
-
-	HAL_StatusTypeDef spiRegWrite(uint8_t reg, uint8_t *pData, uint16_t size){
-		HAL_GPIO_WritePin(CAM_CS_GPIO_Port, CAM_CS_Pin, GPIO_PIN_RESET); // CS Pin Set LOW
-
-		HAL_StatusTypeDef status;
-		uint8_t cmdByte = 0x80 | reg; // a 1 followed by reg addr, to write to reg
-
-		status = HAL_SPI_Transmit(spiHandle, &cmdByte, 1, TIMEOUT);
-		status = HAL_SPI_Transmit(spiHandle, pData, size, TIMEOUT);
-		return status;
-	}
-
-	HAL_StatusTypeDef spiRegRead(uint8_t reg, uint8_t *pBuffer, uint16_t size){
-		HAL_GPIO_WritePin(CAM_CS_GPIO_Port, CAM_CS_Pin, GPIO_PIN_RESET); // CS Pin Set LOW
-
-		HAL_StatusTypeDef status;
-		uint8_t cmdByte = 0x00 | reg; // a 0 followed by register to read
-
-		status = HAL_SPI_Transmit(spiHandle, &cmdByte, 1, TIMEOUT);
-		status = HAL_SPI_Receive(spiHandle, pBuffer, size, TIMEOUT);
-		return status;
-
-	}
-
-	bool isFIFOBusy(){
-		uint8_t data = 0x00;
-		i2cRegRead(FIFO_STATUS_REG, &data, 1);
-		return checkBit(data, 3);
-	}
-
-	void readFrameBuffer(uint8_t *buffer){
-
-		if(isFIFOBusy()){
-			printf("Can't read, FIFO is busy...");
-		} else {
-			i2cRegRead(FIFO_BYTE0, &buffer[0], 1);
-			i2cRegRead(FIFO_BYTE1, &buffer[1], 1);
-			i2cRegRead(FIFO_BYTE2, &buffer[2], 1);
-		}
-
-	}
-
-	void singleCapture(){
-		uint8_t cmd;
-		if(isFIFOBusy()){
-			printf("Can't Capture, FIFO is busy...");
-		} else {
-			cmd = SET_CAPTURE_FLAG;
-			i2cRegWrite(FIFO_CONTROL_REG, &cmd, 1);
-		}
-	}
-
-	void flushFIFO(){
-		clearFIFOFlag();
-		resetFIFOPointers();
-	}
-
-	void clearFIFOFlag(){
-		uint8_t cmd = FIFO_FLAG_CLR;
-		i2cRegWrite(FIFO_CONTROL_REG, &cmd, 1);
-	}
-
-	void resetFIFOPointers(){
-		uint8_t cmd = FIFO_PTR_CLR;
-		i2cRegWrite(FIFO_CONTROL_REG, &cmd, 1);
-	}
-};
 
 /* USER CODE END 0 */
 
@@ -245,14 +120,19 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_USART2_UART_Init();
-  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  ArducamController arducam(&hi2c1, &hspi1); //Initialize the Arducam
+  //Initialize the Arducam
+  ArducamController arducam;
+  arducam.init();
+  printf("Did we make it this far?\n");
+
+  /*serialPrint();
+  arducam.init();
   arducam.singleCapture();
   uint8_t buffer[6] = "apple";
   arducam.readFrameBuffer(buffer);
-  serialPrint(buffer, sizeof(buffer));
+  serialPrint(buffer, sizeof(buffer));*/
 
   /* USER CODE END 2 */
 
@@ -403,41 +283,6 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
-
-}
-
-/**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART1_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART1_Init 0 */
-
-  /* USER CODE END USART1_Init 0 */
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART1_Init 2 */
-
-  /* USER CODE END USART1_Init 2 */
 
 }
 
