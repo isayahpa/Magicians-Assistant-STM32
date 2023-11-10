@@ -21,9 +21,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
+//#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+//#include "helpers.h"
 #include "ArducamController.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,8 +36,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
-#define TIMEOUT 100
 
 /* USER CODE END PD */
 
@@ -62,30 +63,12 @@ static void MX_SPI1_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
-//Lets me use printf()
-#ifdef __GNUC__
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif
 
-PUTCHAR_PROTOTYPE
-{
-  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-  return ch;
-}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-int checkBit(uint8_t num, int index){
-	return (int) ((num >> index) & 1);
-}
-
-void serialPrint(uint8_t* msg, uint16_t size){
-	HAL_UART_Transmit(&huart2, msg, size, TIMEOUT);
-}
 
 /* USER CODE END 0 */
 
@@ -121,14 +104,18 @@ int main(void)
   MX_SPI1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  //Initialize Helper Functions
+  initHelpers(&huart2);
 
   //Initialize the Arducam
-  ArducamController arducam;
-  arducam.init();
-  printf("Did we make it this far?\n");
+  printf("Size of the Struct: %d\n", sizeof(ArducamController));
+  ArducamController* pArducam = malloc(sizeof(ArducamController));
+  printf("About to Run init\n");
+  initArducam(pArducam, &hi2c1, &hspi1, CAM_CS_GPIO_Port, CAM_CS_Pin);
+  ArducamController arducam = *pArducam;
 
-  /*serialPrint();
-  arducam.init();
+  // TODO: Saw an error in the status after init will need to investigate
+
   arducam.singleCapture();
   uint8_t buffer[6] = "apple";
   arducam.readFrameBuffer(buffer);
@@ -146,6 +133,8 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   }
+
+  free(pArducam);
   /* USER CODE END 3 */
 }
 

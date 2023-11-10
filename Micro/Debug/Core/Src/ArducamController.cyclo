@@ -1,0 +1,13 @@
+../Core/Src/ArducamController.c:9:6:setCS	1
+../Core/Src/ArducamController.c:13:6:initArducam	1
+../Core/Src/ArducamController.c:39:6:i2cRegWrite	1
+../Core/Src/ArducamController.c:48:6:i2cRegRead	1
+../Core/Src/ArducamController.c:53:6:spiRegWrite	1
+../Core/Src/ArducamController.c:62:6:spiRegRead	1
+../Core/Src/ArducamController.c:71:5:isFIFOBusy	1
+../Core/Src/ArducamController.c:77:6:readFrameBuffer	2
+../Core/Src/ArducamController.c:89:6:singleCapture	2
+../Core/Src/ArducamController.c:99:6:flushFIFO	1
+../Core/Src/ArducamController.c:104:6:clearFIFOFlag	1
+../Core/Src/ArducamController.c:109:6:resetFIFOPointers	1
+../Core/Src/ArducamController.c:114:6:printStatus	1
