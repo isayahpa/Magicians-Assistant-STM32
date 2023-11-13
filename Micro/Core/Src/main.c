@@ -108,18 +108,15 @@ int main(void)
   initHelpers(&huart2);
 
   //Initialize the Arducam
-  printf("Size of the Struct: %d\n", sizeof(ArducamController));
-  ArducamController* pArducam = malloc(sizeof(ArducamController));
-  printf("About to Run init\n");
-  initArducam(pArducam, &hi2c1, &hspi1, CAM_CS_GPIO_Port, CAM_CS_Pin);
-  ArducamController arducam = *pArducam;
+  //ArducamController* pArducam = malloc(sizeof(ArducamController));
+  ArducamController arducam;
+  initArducam(&arducam, &hi2c1, &hspi1, CAM_CS_GPIO_Port, CAM_CS_Pin);
 
   // TODO: Saw an error in the status after init will need to investigate
+  //singleCapture(&arducam);
+  //uint8_t buffer[] = "apple";
+  //readFrameBuffer(&arducam, buffer);
 
-  arducam.singleCapture();
-  uint8_t buffer[6] = "apple";
-  arducam.readFrameBuffer(buffer);
-  serialPrint(buffer, sizeof(buffer));*/
 
   /* USER CODE END 2 */
 
@@ -127,14 +124,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  //printf(buffer, sizeof(buffer));
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
 
-  free(pArducam);
+  free(&arducam);
   /* USER CODE END 3 */
 }
 

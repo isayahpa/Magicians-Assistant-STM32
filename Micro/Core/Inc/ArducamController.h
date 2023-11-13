@@ -42,35 +42,33 @@ struct ArducamController{
 	GPIO_TypeDef* pGPIOPort;
 	uint16_t pinNo;
 	//TODO: Include function pointers to the below functions
-	//void (*init)(ArducamController*, I2C_HandleTypeDef*, SPI_HandleTypeDef*, GPIO_TypeDef*, uint16_t);
-	void (*setCS)(int);
 
 };
 
-
 // Static makes functions "private"
 //Initializer
-void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleTypeDef* pHSPI, GPIO_TypeDef* pGPIOPort, uint16_t pinNo);
+void initArducam(ArducamController*, I2C_HandleTypeDef*, SPI_HandleTypeDef*, GPIO_TypeDef*, uint16_t);
 
 //I2C Functions
-void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t size);
-void i2cRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_t size);
+void i2cRegWrite(ArducamController*, uint8_t, uint8_t*, uint16_t);
+void i2cRegRead(ArducamController*, uint8_t, uint8_t*, uint16_t);
 
 //SPI Functions
-void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t size);
-void spiRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_t size);
+void spiRegWrite(ArducamController*, uint8_t, uint8_t*, uint16_t);
+void spiRegRead(ArducamController*, uint8_t, uint8_t*, uint16_t);
 
 //Camera Functions
-int isFIFOBusy(ArducamController* pCtrl);
-void readFrameBuffer(ArducamController* pCtrl, uint8_t *buffer);
-void singleCapture(ArducamController* pCtrl);
-void flushFIFO(ArducamController* pCtrl);
-void clearFIFOFlag(ArducamController* pCtrl);
-void resetFIFOPointers(ArducamController* pCtrl);
+int isFIFOBusy(ArducamController*);
+void readFrameBuffer(ArducamController*, uint8_t*);
+void singleCapture(ArducamController*);
+void flushFIFO(ArducamController*);
+void clearFIFOFlag(ArducamController*);
+void resetFIFOPointers(ArducamController*);
 
 //Helpers
-void printStatus(ArducamController* pCtrl);
-void setCS(ArducamController* pCtrl, int level);
-
+static void printStatus(ArducamController*);
+void enable(ArducamController*);
+void disable(ArducamController*);
+void registerDump(ArducamController*);
 
 #endif /* SRC_ARDUCAMCONTROLLER_H_ */
