@@ -7,7 +7,7 @@
 //Returns the value of the bit at index in num
 //Ex: checkBit(0x05, 2) == 2
 int checkBit(unsigned char num, int index){
-	return (int) ((num >> index) & 1);
+	return (int) ((num >> index) & 0x01);
 }
 
 // Allows for printf() use

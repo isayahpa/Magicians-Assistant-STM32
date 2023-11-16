@@ -21,10 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include "helpers.h"
 #include "ArducamController.h"
 
 /* USER CODE END Includes */
@@ -36,7 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define TIMEOUT HAL_MAX_DELAY
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -107,16 +105,15 @@ int main(void)
   //Initialize Helper Functions
   initHelpers(&huart2);
 
+
   //Initialize the Arducam
   //ArducamController* pArducam = malloc(sizeof(ArducamController));
   ArducamController arducam;
   initArducam(&arducam, &hi2c1, &hspi1, CAM_CS_GPIO_Port, CAM_CS_Pin);
 
-  // TODO: Saw an error in the status after init will need to investigate
-  //singleCapture(&arducam);
-  //uint8_t buffer[] = "apple";
-  //readFrameBuffer(&arducam, buffer);
-
+  uint8_t *pictureBuffer;
+  //FILE *pPicFile = fopen("capture", "w");
+  singleCapture(&arducam, &pictureBuffer, NULL);
 
   /* USER CODE END 2 */
 
@@ -131,7 +128,10 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
 
+  printf("Deleting Arducam\n");
   free(&arducam);
+  free(pictureBuffer);
+  fclose(pPicFile);
   /* USER CODE END 3 */
 }
 
@@ -160,10 +160,10 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 10;
+  RCC_OscInitStruct.PLL.PLLN = 14;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -174,11 +174,11 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -200,7 +200,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x10909CEC;
+  hi2c1.Init.Timing = 0x00101926;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -336,8 +336,8 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : CAM_CS_Pin */
   GPIO_InitStruct.Pin = CAM_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(CAM_CS_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
