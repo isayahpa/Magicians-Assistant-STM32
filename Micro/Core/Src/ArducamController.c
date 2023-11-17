@@ -15,31 +15,67 @@ void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleT
 	pCtrl -> pGPIOPort = pGPIOPort;
 	pCtrl -> pinNo = pinNo;
 
-	if(HAL_I2C_IsDeviceReady(pHI2C, I2C_ADDR_WRITE, 1, HAL_MAX_DELAY) == HAL_OK){
-		resetCam(pCtrl);
-
-		setDefaultSettings(pCtrl);
-		flushFIFO(pCtrl);
-
+	resetCPLD(pCtrl);
+	if(HAL_I2C_IsDeviceReady(pHI2C, I2C_ADDR_WRITE, 1, HAL_MAX_DELAY) != HAL_OK){
+		printf("Arducam I2C Error.\n");
+		return;
+	} else if(!isSPIWorking(pCtrl)){
 		printStatus(pCtrl);
+		printf("Arducam SPI Error.\n");
+		return;
 	} else {
-		printf("Arducam I2C Wasn't Ready Yet\n");
+		printf("I2C Check Passed\n");
+		printf("SPI Check Passed\n");
+		setDefaultSettings(pCtrl);
+		HAL_Delay(1000);
+		clearFIFOFlag(pCtrl);
 	}
 
 	if(pCtrl->status != HAL_OK){
 		printf("Arducam Init Fail | Status = 0x%02X\n", pCtrl->status);
 	} else {
 		printf("Arducam Init Success!\n");
+		printStatus(pCtrl);
 	}
 
 }
 
+void setDefaultSettings(ArducamController* pCtrl){
+	printf("Configuring Default Settings\n");
+	uint8_t data = 0x01;
+	i2cRegWrite(pCtrl, 0xFF, &data, 1);
+	data = 0x80;
+	i2cRegWrite(pCtrl, 0x12, &data, 1);
+	HAL_Delay(100);
+
+	i2cWriteMultiple(pCtrl, OV2640_JPEG_INIT);
+	i2cWriteMultiple(pCtrl, OV2640_YUV422);
+	i2cWriteMultiple(pCtrl, OV2640_JPEG);
+	data = 0x01;
+	i2cRegWrite(pCtrl, 0xFF, &data, 1);
+	data = 0x00;
+	i2cRegWrite(pCtrl, 0x15, &data, 1);
+	i2cWriteMultiple(pCtrl, OV2640_320x240_JPEG);
+
+	//flushFIFO(pCtrl);
+	//setNCaptureFrames(pCtrl, 1);
+}
 //TODO: Make it so that when Register Writes/Reads fail (status != 00), we print error data and throw an interrupt? or maybe just halt the function?
 // TODO: Find out why the status == 1 when we try I2C transmit
 //
 /*To Write over i2c:
 * Request I2C_ADDR_WRITE -> Send Cam Register Address (left shift device addr's by 1) -> Send Data bytes
 */
+
+int isSPIWorking(ArducamController *pCtrl){
+	uint8_t testVal = 0xAB;
+	uint8_t readVal = 0x00;
+	spiRegWrite(pCtrl, 0x00, &testVal, 1);
+	spiRegRead(pCtrl, 0x00, &readVal, 1);
+
+	return (readVal == testVal);
+
+}
 
 void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t size){
 	printf("Writing 0x%04X to Reg 0x%02X\n", *pData, reg);
@@ -73,9 +109,9 @@ void i2cWriteMultiple(ArducamController* pCtrl, const struct SensorReg *regList)
 }
 
 void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t size){
-	printf("Writing 0x%02X to %02X\n", *pData, reg);
+	printf("Writing 0x%02X to 0x%02X\n", *pData, reg);
 	enable(pCtrl); // CS Pin Set LOW
-	//HAL_Delay(CAM_TIMEOUT);
+	HAL_Delay(100);
 	uint8_t cmdByte = reg | SPI_WRITE_MASK; // a 1 followed by Reg addr, to write to reg
 
 	pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, &cmdByte, 1, CAM_TIMEOUT);
@@ -86,21 +122,21 @@ void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t
 
 void spiRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_t size){
 	enable(pCtrl);
-	//HAL_Delay(CAM_TIMEOUT);
+	HAL_Delay(100);
 	uint8_t cmdByte = reg & SPI_READ_MASK; // a 0 followed by register to read
-	uint8_t dummyByte = 0;
+	uint8_t dummyByte = 0x00;
 	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &cmdByte, pBuffer, 1, CAM_TIMEOUT);
 	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &dummyByte, pBuffer, size, CAM_TIMEOUT);
 	//pCtrl->status = HAL_SPI_Receive(pCtrl->pSPIHandle, pBuffer, size, CAM_TIMEOUT);
 	disable(pCtrl);
-	printf("Read 0x%02X from %02X\n", *pBuffer, reg);
+	printf("Read 0x%02X from 0x%02X\n", *pBuffer, reg);
 }
 
 //Returns FIFO 'finished' flag. 0 -> FIFO is busy, 1 -> capture is finished
 
 int isFIFOReady(ArducamController* pCtrl){
 	uint8_t registerData = 0;
-	i2cRegRead(pCtrl, FIFO_STATUS_REG, &registerData, 1);
+	spiRegRead(pCtrl, FIFO_STATUS_REG, &registerData, 1);
 	int isFinished = checkBit(registerData, 3);
 	printf("FIFO Ready Flag : %d\n", isFinished);
 	return isFinished;
@@ -127,8 +163,12 @@ sending command code 0x41 and write ‘1’ into bit[0] before next capture comm
 //Returns a pointer to the picture data
 void singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer, FILE *pPicFile){
 		printf("Starting Capture\n");
+
+		flushFIFO(pCtrl);
+		clearFIFOFlag(pCtrl);
 		setCaptureFlag(pCtrl);
-		while(!isFIFOReady(pCtrl)); // Wait 'til Finished Flag is set
+		HAL_Delay(1000);
+		while(!isFIFOReady(pCtrl)); //    Wait 'til Finished Flag is set
 		printf("FIFO Write Finished!\n");
 
 		//uint32_t fifoLength = getFIFOLength(pCtrl);
@@ -153,23 +193,16 @@ void singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer, FILE *pPicFile)
 }
 
 
-void setDefaultSettings(ArducamController* pCtrl){
-	printf("Configuring Default Settings\n");
-	i2cWriteMultiple(pCtrl, OV2640_QVGA);
-	i2cWriteMultiple(pCtrl, OV2640_JPEG_INIT);
-	i2cWriteMultiple(pCtrl, OV2640_640x480_JPEG);
-	flushFIFO(pCtrl);
-	setNCaptureFrames(pCtrl, 1);
-}
+
 
 //Resets the CPLD
-void resetCam(ArducamController* pCtrl){
+void resetCPLD(ArducamController* pCtrl){
 	uint8_t cmd = 0x80;
-	i2cRegWrite(pCtrl, 0x07, &cmd, 1);
-	HAL_Delay(CAM_TIMEOUT);
+	spiRegWrite(pCtrl, 0x07, &cmd, 1);
+	HAL_Delay(100);
 	cmd = 0x00;
-	i2cRegWrite(pCtrl, 0x07, &cmd, 1);
-	HAL_Delay(CAM_TIMEOUT);
+	spiRegWrite(pCtrl, 0x07, &cmd, 1);
+	HAL_Delay(100);
 }
 
 
@@ -186,8 +219,8 @@ void burstReadFIFO(ArducamController *pCtrl, uint8_t *pBuffer){
 void flushFIFO(ArducamController* pCtrl){
 	printf("Flushing FIFO\n");
 	clearFIFOFlag(pCtrl);
-	printf("Reseting FIFO Pointers\n");
-	resetFIFOPointers(pCtrl);
+	//printf("Reseting FIFO Pointers\n");
+	//resetFIFOPointers(pCtrl);
 }
 
 void clearFIFOFlag(ArducamController* pCtrl){
@@ -245,8 +278,8 @@ void registerDump(ArducamController* pCtrl){
 	printf("Capture Control Register: 0x%02X\n", data);
 	i2cRegRead(pCtrl, FIFO_CONTROL_REG, &data, 1);
 	printf("FIFO Control Register: 0x%02X\n", data);
-	i2cRegRead(pCtrl, FIFO_SINGLE_READ_CMD, &data, 1);
-	printf("FIFO Single Read Register: 0x%02X\n", data);
+	i2cRegRead(pCtrl, CHIP_VERSION_REG, &data, 1);
+	printf("Chip Version: 0x%02X\n", data);
 	i2cRegRead(pCtrl, FIFO_STATUS_REG, &data, 1);
 	printf("FIFO Status Register: 0x%02X\n", data);
 	i2cRegRead(pCtrl, FIFO_BYTE0, &data, 1);
@@ -263,8 +296,8 @@ void registerDump(ArducamController* pCtrl){
 	printf("Capture Control Register: 0x%02X\n", data);
 	spiRegRead(pCtrl, FIFO_CONTROL_REG, &data, 1);
 	printf("FIFO Control Register: 0x%02X\n", data);
-	//spiRegRead(pCtrl, FIFO_SINGLE_READ_REG, &data, 1);
-	//printf("FIFO Single Read Register: %x\n", data);
+	spiRegRead(pCtrl, CHIP_VERSION_REG, &data, 1);
+	printf("Chip Version: 0x%02X\n", data);
 	spiRegRead(pCtrl, FIFO_STATUS_REG, &data, 1);
 	printf("FIFO Status Register: 0x%02X\n", data);
 	spiRegRead(pCtrl, FIFO_BYTE0, &data, 1);

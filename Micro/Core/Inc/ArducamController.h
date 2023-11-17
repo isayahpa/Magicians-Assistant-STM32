@@ -23,19 +23,21 @@
 #define FIFO_CONTROL_REG (uint8_t) 0x04
 #define FIFO_SINGLE_READ_CMD (uint8_t) 0x3D
 #define FIFO_STATUS_REG (uint8_t) 0x41
+#define CHIP_VERSION_REG (uint8_t) 0x40
 #define FIFO_BYTE0 (uint8_t) 0x42
 #define FIFO_BYTE1 (uint8_t) 0x43
 #define FIFO_BYTE2 (uint8_t) 0x44
 
 //Commands
-#define FIFO_FLAG_CLR (uint8_t)0b00000001
-#define FIFO_PTR_CLR (uint8_t)0b00110000
-#define	SET_CAPTURE_FLAG (uint8_t)0b00000010
+#define FIFO_FLAG_CLR (uint8_t)0x01
+#define	SET_CAPTURE_FLAG (uint8_t)0x02
+#define FIFO_PTR_CLR (uint8_t)0x30
 #define CAPTURE_CMD (uint8_t) 0x84
 #define FIFO_BURST_READ (uint8_t) 0x3C
+#define MAX_FIFO_LENGTH 0x5FFFF
 
 //Constants
-#define CAM_TIMEOUT 100
+#define CAM_TIMEOUT HAL_MAX_DELAY
 #define SPI_CLK_HZ 800000
 #define SPI_WRITE_MASK 0x80
 #define SPI_READ_MASK 0x7F
@@ -75,7 +77,7 @@ void resetFIFOPointers(ArducamController*);
 void setDefaultSettings(ArducamController*);
 void setNCaptureFrames(ArducamController*, int);
 void setCaptureFlag(ArducamController*);
-void resetCam(ArducamController*);
+void resetCPLD(ArducamController*);
 void burstReadFIFO(ArducamController*, uint8_t*);
 
 //Helpers
@@ -83,7 +85,8 @@ void printStatus(ArducamController*);
 void enable(ArducamController*);
 void disable(ArducamController*);
 void registerDump(ArducamController*);
-uint32_t getFIFOLength(ArducamController *pCtrl);
+uint32_t getFIFOLength(ArducamController*);
+int isSPIWorking(ArducamController*);
 
 
 #define OV2640_CHIPID_HIGH 	0x0A

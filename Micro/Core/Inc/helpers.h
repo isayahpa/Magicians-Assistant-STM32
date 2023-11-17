@@ -5,7 +5,7 @@
 #include "stm32l4xx_hal.h"
 #include <stdio.h>
 
-int checkBit(unsigned char, int);
+int checkBit(uint8_t, int);
 void initHelpers(UART_HandleTypeDef*);
 
 #endif /* INC_HELPERS_H_ */

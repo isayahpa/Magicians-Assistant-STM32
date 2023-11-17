@@ -416,7 +416,7 @@ static const struct SensorReg OV2640_JPEG_INIT[] =
   { 0xff, 0xff },
 };
 
-/*static struct SensorReg OV2640_YUV422[] =
+static const struct SensorReg OV2640_YUV422[] =
 {
   { 0xFF, 0x00 },
   { 0x05, 0x00 },
@@ -428,7 +428,7 @@ static const struct SensorReg OV2640_JPEG_INIT[] =
   { 0xe1, 0x77 },
   { 0x00, 0x00 },
   { 0xff, 0xff },
-};*/
+};
 
 static const struct SensorReg OV2640_JPEG[] =
 {

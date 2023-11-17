@@ -6,7 +6,7 @@
 
 //Returns the value of the bit at index in num
 //Ex: checkBit(0x05, 2) == 2
-int checkBit(unsigned char num, int index){
+int checkBit(uint8_t num, int index){
 	return (int) ((num >> index) & 0x01);
 }
 

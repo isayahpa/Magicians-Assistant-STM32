@@ -107,31 +107,33 @@ int main(void)
 
 
   //Initialize the Arducam
-  //ArducamController* pArducam = malloc(sizeof(ArducamController));
+
   ArducamController arducam;
   initArducam(&arducam, &hi2c1, &hspi1, CAM_CS_GPIO_Port, CAM_CS_Pin);
 
   uint8_t *pictureBuffer;
   //FILE *pPicFile = fopen("capture", "w");
-  singleCapture(&arducam, &pictureBuffer, NULL);
+
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("Waiting for Capture CMD...\n");
   while (1)
   {
-	  //printf(buffer, sizeof(buffer));
 
+	  if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET){
+		  singleCapture(&arducam, &pictureBuffer, NULL);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
 
   printf("Deleting Arducam\n");
-  free(&arducam);
   free(pictureBuffer);
-  fclose(pPicFile);
+  //fclose(pPicFile);
   /* USER CODE END 3 */
 }
 
