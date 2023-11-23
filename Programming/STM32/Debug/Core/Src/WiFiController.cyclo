@@ -1,0 +1,4 @@
+../Core/Src/WiFiController.c:20:6:initESP	1
+../Core/Src/WiFiController.c:27:6:signalReady	1
+../Core/Src/WiFiController.c:31:6:signalBusy	1
+../Core/Src/WiFiController.c:35:19:getNextCMD	1

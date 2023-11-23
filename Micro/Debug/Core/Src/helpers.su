@@ -1,3 +1,0 @@
-../Core/Src/helpers.c:9:5:checkBit	16	static
-../Core/Src/helpers.c:23:1:__io_putchar	16	static
-../Core/Src/helpers.c:29:6:initHelpers	16	static

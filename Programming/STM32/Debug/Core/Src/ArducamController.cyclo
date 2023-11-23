@@ -1,3 +1,23 @@
-../Core/Src/ArducamController.cpp:10:1:ArducamController::ArducamController()	1
-../Core/Src/ArducamController.cpp:15:1:ArducamController::~ArducamController()	1
-../Core/Src/ArducamController.cpp:15:1:virtual ArducamController::~ArducamController()	1
+../Core/Src/ArducamController.c:11:6:initArducam	5
+../Core/Src/ArducamController.c:45:6:singleCapture	3
+../Core/Src/ArducamController.c:74:6:burstReadFIFO	2
+../Core/Src/ArducamController.c:87:6:setDefaultSettings	1
+../Core/Src/ArducamController.c:110:5:isSPIWorking	1
+../Core/Src/ArducamController.c:125:6:i2cRegWrite	1
+../Core/Src/ArducamController.c:138:6:i2cRegRead	1
+../Core/Src/ArducamController.c:146:6:i2cWriteMultiple	3
+../Core/Src/ArducamController.c:156:6:spiRegWrite	1
+../Core/Src/ArducamController.c:169:6:spiRegRead	1
+../Core/Src/ArducamController.c:182:5:isFIFOReady	1
+../Core/Src/ArducamController.c:191:6:singleRead	2
+../Core/Src/ArducamController.c:214:6:resetCPLD	1
+../Core/Src/ArducamController.c:226:6:flushFIFO	1
+../Core/Src/ArducamController.c:233:6:clearFIFOFlag	1
+../Core/Src/ArducamController.c:238:6:resetFIFOPointers	1
+../Core/Src/ArducamController.c:243:6:setCaptureFlag	1
+../Core/Src/ArducamController.c:248:6:setNCaptureFrames	3
+../Core/Src/ArducamController.c:256:10:getFIFOLength	1
+../Core/Src/ArducamController.c:270:6:enable	1
+../Core/Src/ArducamController.c:274:6:disable	1
+../Core/Src/ArducamController.c:279:6:registerDump	1
+../Core/Src/ArducamController.c:320:6:printStatus	1
