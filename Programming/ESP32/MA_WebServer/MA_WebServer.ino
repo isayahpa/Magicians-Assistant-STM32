@@ -4,12 +4,12 @@
 //Commands to be sent to STM32
 #define BUFFER_SIZE 5000
 
-const String LIGHTS_ON = "lights_on";
-const String LIGHTS_OFF = "lights_off";
-const String SHUFFLE = "shuffle";
-const String SNAP = "snap";
-const String ARCHIDEKT = "archidekt";
-const String SHUTDOWN = "shutdown";
+const char* LIGHTS_ON = "light_on";
+const char* LIGHTS_OFF = "lightoff";
+const char* SHUFFLE = "shuffle_";
+const char* SNAP = "picture_";
+const char* ARCHIDEKT = "archidekt";
+const char* SHUTDOWN = "shutdown";
 
 const String STATUS_LIGHTS_ON = "Turning Lights On";
 const String STATUS_LIGHTS_OFF = "Turning Lights Off";
@@ -45,7 +45,7 @@ unsigned long currentTime = millis();
 // Previous time
 unsigned long previousTime = 0; 
 // Define timeout time in milliseconds (example: 2000ms = 2s)
-const long timeoutTime = 2000;
+const long timeoutTime = 5000;
 
 void setup() {
   Serial.begin(115200);
@@ -105,7 +105,7 @@ void loop(){
             } else if (header.indexOf("GET /archidekt/send/") >= 0) {
               sendCMD(ARCHIDEKT);
             } else if (header.indexOf("GET /shutdown/") >= 0) {
-
+              sendCMD(SHUTDOWN);
             }
 
             client.println("<!DOCTYPE html>");
@@ -165,10 +165,8 @@ void sendCMD(String cmd){
   
   if(cmd == LIGHTS_ON){
     Serial.println(STATUS_LIGHTS_ON);
-    lightsOn = true;
   } else if (cmd == LIGHTS_OFF){
     Serial.println(STATUS_LIGHTS_OFF);
-    lightsOn = false;
   } else if (cmd == SHUFFLE){
     Serial.println(STATUS_SHUFFLE);
   } else if (cmd == SNAP){
@@ -181,28 +179,45 @@ void sendCMD(String cmd){
     Serial.println(STATUS_UNKNOWN);
     return;
   }
-  
-  waitForSTM(); // Wait for the STM to be ready to accept a CMD      
+   
   STMSerialPort.print(cmd); // Send CMD
-  waitForSTM(); //Wait for STM to execute the command
-  
+  if(waitForSTM() == false) {//Wait for STM to execute the command
+    Serial.println("Timed out waiting for STM, must be busy");
+    return;
+  }
 
-  if(cmd == SNAP){ // Only these 2 cmds use the dataBuffer
+  // On a successful wait, update state variables
+  if(cmd == LIGHTS_ON){
+    lightsOn = true;
+  } else if (cmd == LIGHTS_OFF){
+    lightsOn = false;
+  } else if (cmd == SHUFFLE){
+  } else if (cmd == SNAP){
     int nBytesToRead = STMSerialPort.available();
     dataBuffer = readFromSTM(nBytesToRead);
     pictureDataBuffer = hexToBase64(dataBuffer, nBytesToRead);  //When getting picture data convert to Base64 so that I can see it in the preview
-  } else if(cmd == ARCHIDEKT){
+  } else if (cmd == ARCHIDEKT){
     int nBytesToRead = STMSerialPort.available();
     dataBuffer = readFromSTM(nBytesToRead);
     textDataBuffer = (char*) dataBuffer;
+  } else if (cmd == SHUTDOWN) {
+
   }
 
 }
 
 // Makes the ESP wait for STM to be Ready
-void waitForSTM(){
-  status = "Waiting for STM To Be Ready";
-  while(digitalRead(STM_READY_PIN) != HIGH);
+//Returns true if the Ready Flag was noticed successfully, False on Timeout
+bool waitForSTM(){
+  Serial.println("Waiting for STM To Be Ready");
+  unsigned long startTime = millis();SSH1106 
+  while(digitalRead(STM_READY_PIN) != HIGH){
+    if(millis() - startTime >= timeoutTime){
+      return false;
+    }
+  }
+
+  return true;
 }
 
 uint8_t* readFromSTM(int nBytes){

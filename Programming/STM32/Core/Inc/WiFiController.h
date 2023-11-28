@@ -20,6 +20,8 @@ extern const char* STATUS_ARCHIDEKT;
 extern const char* STATUS_SHUTDOWN;
 extern const char* STATUS_UNKNOWN;
 
+#define ESP_TIMEOUT 2000
+
 struct WiFiController{
 
 	UART_HandleTypeDef* pUARTHandle;
@@ -33,6 +35,6 @@ void initESP(WiFiController* pCtrl, UART_HandleTypeDef* pUARTHandle, GPIO_TypeDe
 void signalReady(WiFiController* pCtrl);
 void signalBusy(WiFiController* pCtrl);
 HAL_StatusTypeDef getNextCMD(WiFiController* pCtrl, char* pCMDBuffer);
-
+HAL_StatusTypeDef sendData(WiFiController* pCtrl, uint8_t* pDataBuffer, uint16_t size);
 
 #endif /* INC_WIFICONTROLLER_H_ */

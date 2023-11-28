@@ -55,14 +55,17 @@ struct ArducamController{
 	SPI_HandleTypeDef* pSPIHandle;
 	HAL_StatusTypeDef status;
 
-	GPIO_TypeDef* pGPIOPort;
-	uint16_t pinNo;
+	GPIO_TypeDef* pCSPort;
+	uint16_t csPinNo;
+	GPIO_TypeDef* pFlashPort;
+	uint16_t flashPinNo;
 
 };
 
 // Static makes functions "private"
 //Initializer
-void initArducam(ArducamController*, I2C_HandleTypeDef*, SPI_HandleTypeDef*, GPIO_TypeDef*, uint16_t);
+void initArducam(ArducamController*, I2C_HandleTypeDef*, SPI_HandleTypeDef*, GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t);
+
 
 //I2C Functions
 void i2cRegWrite(ArducamController*, uint8_t, uint8_t*, uint16_t);
@@ -76,7 +79,7 @@ void spiRegRead(ArducamController*, uint8_t, uint8_t*, uint16_t);
 //Camera Functions
 int isFIFOReady(ArducamController*);
 void singleRead(ArducamController*, uint8_t *);
-void singleCapture(ArducamController*, uint8_t**);
+uint16_t singleCapture(ArducamController*, uint8_t**);
 void flushFIFO(ArducamController*);
 void clearFIFOFlag(ArducamController*);
 void resetFIFOPointers(ArducamController*);
@@ -84,12 +87,14 @@ void setDefaultSettings(ArducamController*);
 void setNCaptureFrames(ArducamController*, int);
 void setCaptureFlag(ArducamController*);
 void resetCPLD(ArducamController*);
-void burstReadFIFO(ArducamController*, uint8_t*);
+uint16_t burstReadFIFO(ArducamController *, uint8_t**);
 
 //Helpers
 void printStatus(ArducamController*);
 void enable(ArducamController*);
 void disable(ArducamController*);
+void flashOn(ArducamController*);
+void flashOff(ArducamController*);
 void registerDump(ArducamController*);
 uint32_t getFIFOLength(ArducamController*);
 int isSPIWorking(ArducamController*);

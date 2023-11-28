@@ -1,11 +1,11 @@
 #include "WifiController.h"
 #include "helpers.h"
 
-//Commands
-const char* LIGHTS_ON = "lights_on";
-const char* LIGHTS_OFF = "lights_off";
-const char* SHUFFLE = "shuffle";
-const char* SNAP = "snap";
+//Commands - Each 8 bytes long
+const char* LIGHTS_ON = "light_on";
+const char* LIGHTS_OFF = "lightoff";
+const char* SHUFFLE = "shuffle_";
+const char* SNAP = "picture_";
 const char* ARCHIDEKT = "archidekt";
 const char* SHUTDOWN = "shutdown";
 
@@ -35,8 +35,15 @@ void signalBusy(WiFiController* pCtrl){
 HAL_StatusTypeDef getNextCMD(WiFiController* pCtrl, char *pCMDBuffer){
 	printf("Waiting for next CMD...\n");
 	signalReady(pCtrl);
+	HAL_Delay(100);
 	pCtrl->status = HAL_UART_Receive(pCtrl->pUARTHandle, (uint8_t*)  pCMDBuffer, 8, HAL_MAX_DELAY); // might need to figure out how to decide how much data to read in
 	printf("CMD FROM ESP: %s\n", pCMDBuffer);
 	signalBusy(pCtrl);
 	return pCtrl->status;
+}
+
+HAL_StatusTypeDef sendData(WiFiController* pCtrl, uint8_t* pDataBuffer, uint16_t size){
+	printf("Sending %u bytes to ESP\n", size);
+	pCtrl->status = HAL_UART_Transmit(pCtrl->pUARTHandle, pDataBuffer, size, ESP_TIMEOUT);
+	return pCtrl -> status;
 }

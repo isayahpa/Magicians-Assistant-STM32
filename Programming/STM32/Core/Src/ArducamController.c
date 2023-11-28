@@ -8,13 +8,15 @@
  * I2C interfaces directly with the OV2640 sensor (the camera itself)
  * SPI interfaces with the Chip as a whole, to indirectly control the camera
  */
-void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleTypeDef* pHSPI, GPIO_TypeDef* pGPIOPort, uint16_t pinNo){
+void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleTypeDef* pHSPI, GPIO_TypeDef* pCSPort, uint16_t csPinNo, GPIO_TypeDef* pFlashPort, uint16_t flashPinNo){
 	printf("Initializing ArduCam\n");
 	pCtrl->pI2CHandle = pHI2C;
 	pCtrl->pSPIHandle = pHSPI;
 	pCtrl->status = HAL_OK;
-	pCtrl -> pGPIOPort = pGPIOPort;
-	pCtrl -> pinNo = pinNo;
+	pCtrl -> pCSPort = pCSPort;
+	pCtrl -> csPinNo = csPinNo;
+	pCtrl -> pFlashPort = pFlashPort;
+	pCtrl -> flashPinNo = flashPinNo;
 
 	resetCPLD(pCtrl);
 	if((pCtrl->status = HAL_I2C_IsDeviceReady(pHI2C, I2C_ADDR_WRITE, 1, HAL_MAX_DELAY)) != HAL_OK ||
@@ -28,37 +30,34 @@ void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleT
 		setDefaultSettings(pCtrl);
 		HAL_Delay(1000);
 		//clearFIFOFlag(pCtrl);
-
 	}
 
 	if(pCtrl->status != HAL_OK){
 		printf("Arducam Init Fail\n");
 	} else {
 		printf("Arducam Init Success!\n");
-
 	}
 
-	printStatus(pCtrl);
+	//printStatus(pCtrl);
 }
 
-//Returns a pointer to the picture data
-void singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer){
+//Fills *ppBuffer with the Picture Data
+//Returns the # of bytes read from the FIFO
+uint16_t singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer){
 		printf("Starting Capture\n");
 
+		flashOn(pCtrl);
 		clearFIFOFlag(pCtrl);
 		resetFIFOPointers(pCtrl);
 		setNCaptureFrames(pCtrl, 1);
 		setCaptureFlag(pCtrl);
-
 		while(!isFIFOReady(pCtrl)){
 			HAL_Delay(CAPTURE_DELAY);//    Wait 'til Finished Flag is set
 		}
 		printf("FIFO Write Finished!\n");
+		flashOff(pCtrl);
 
-		int bufferSize = 4096;
-		*ppBuffer = calloc(bufferSize, sizeof(uint8_t));
-		burstReadFIFO(pCtrl, *ppBuffer);
-		//clearFIFOFlag();
+		uint16_t bufferSize = burstReadFIFO(pCtrl, ppBuffer);
 
 		printf("Capture Complete!\n");
 		printf("Picture Buffer: \n");
@@ -68,20 +67,30 @@ void singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer){
 		}
 		printf("\n");
 
+		return bufferSize;
 }
 
-//I think i'll need to ignore the first dummy byte?
-void burstReadFIFO(ArducamController *pCtrl, uint8_t *pBuffer){
+//Returns the amount of data (in bytes) read from FIFO
+uint16_t burstReadFIFO(ArducamController *pCtrl, uint8_t **ppBuffer){
 	uint8_t cmd = FIFO_BURST_READ;
 	uint32_t fifoLength = getFIFOLength(pCtrl);
 	uint32_t transmissionSize = fifoLength;
-	if(fifoLength >= 4096){transmissionSize = 4096;}
+	if(fifoLength >= 0xFFFF){
+		printf("Had to Truncate FIFO Transfer\n");
+		transmissionSize = 0xFFFF;
+	}
 
+	// Allocate some space for the buffer
+	*ppBuffer = calloc(transmissionSize, sizeof(uint8_t));
+
+	printf("Reading %lu bytes from Arducam\n", transmissionSize);
 	enable(pCtrl);
-	HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &cmd, pBuffer, 1, HAL_MAX_DELAY);
-	HAL_SPI_Receive(pCtrl->pSPIHandle, pBuffer, transmissionSize, HAL_MAX_DELAY);
+	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &cmd, *ppBuffer, 1, HAL_MAX_DELAY);
+	pCtrl -> status = HAL_SPI_Receive(pCtrl->pSPIHandle, *ppBuffer, transmissionSize, HAL_MAX_DELAY);
 	HAL_Delay(1000); // Just making sure all the data makes it through
 	disable(pCtrl);
+
+	return transmissionSize;
 }
 
 void setDefaultSettings(ArducamController* pCtrl){
@@ -114,7 +123,6 @@ int isSPIWorking(ArducamController *pCtrl){
 	spiRegRead(pCtrl, 0x00, &readVal, 1);
 
 	return (readVal == testVal);
-
 }
 
 //TODO: Make it so that when Register Writes/Reads fail (status != 00), we print error data and throw an interrupt? or maybe just halt the function?
@@ -200,15 +208,6 @@ void singleRead(ArducamController* pCtrl, uint8_t *buffer){
 	}
 
 }
-/*It is a basic capture function of the ArduChip. The capture command code is 0x84, and write
-‘1’ to bit[1] to start a capture sequence. And then polling bit[3] which is the capture done flag by
-sending command code 0x41. After capture is done, user have to clear the capture done flag by
-sending command code 0x41 and write ‘1’ into bit[0] before next capture command.*/
-
-
-
-
-
 
 //Resets the CPLD
 void resetCPLD(ArducamController* pCtrl){
@@ -219,8 +218,6 @@ void resetCPLD(ArducamController* pCtrl){
 	spiRegWrite(pCtrl, 0x07, &cmd, 1);
 	HAL_Delay(100);
 }
-
-
 
 
 void flushFIFO(ArducamController* pCtrl){
@@ -268,11 +265,19 @@ uint32_t getFIFOLength(ArducamController *pCtrl){
 }
 
 void enable(ArducamController* pCtrl){
-	HAL_GPIO_WritePin(pCtrl->pGPIOPort, pCtrl->pinNo, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(pCtrl->pCSPort, pCtrl->csPinNo, GPIO_PIN_RESET);
 }
 
 void disable(ArducamController* pCtrl){
-	HAL_GPIO_WritePin(pCtrl->pGPIOPort, pCtrl->pinNo, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pCtrl->pCSPort, pCtrl->csPinNo, GPIO_PIN_SET);
+}
+
+void flashOn(ArducamController* pCtrl){
+	HAL_GPIO_WritePin(pCtrl->pFlashPort, pCtrl->flashPinNo, GPIO_PIN_SET);
+}
+
+void flashOff(ArducamController* pCtrl){
+	HAL_GPIO_WritePin(pCtrl->pFlashPort, pCtrl->flashPinNo, GPIO_PIN_RESET);
 }
 
 //Prints all of the relevant registers in the Arducam
