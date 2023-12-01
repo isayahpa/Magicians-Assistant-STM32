@@ -1,0 +1,14 @@
+../Core/Src/Camera.c:12:6:camInit	104	static
+../Core/Src/Camera.c:26:6:snapPic	120	static
+../Core/Src/Camera.c:65:19:wCamReg	24	static
+../Core/Src/Camera.c:80:19:wCamRegs	104	static
+../Core/Src/Camera.c:104:6:resetCam	88	static
+../Core/Src/Camera.c:108:19:wCamRegSPI	16	static
+../Core/Src/Camera.c:140:9:rCamSPI	24	static
+../Core/Src/Camera.c:159:6:spiStart	8	static
+../Core/Src/Camera.c:163:6:spiEnd	8	static
+../Core/Src/Camera.c:167:6:resetFifoFlags	104	static
+../Core/Src/Camera.c:171:6:resetCapDoneFlag	104	static
+../Core/Src/Camera.c:175:6:setCaptureCount	104	static
+../Core/Src/Camera.c:179:6:startCapture	104	static
+../Core/Src/Camera.c:183:10:getFifoLen	112	static

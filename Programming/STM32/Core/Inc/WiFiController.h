@@ -5,12 +5,12 @@
 
 typedef struct WiFiController WiFiController;
 
-extern const char* LIGHTS_ON;
-extern const char* LIGHTS_OFF;
-extern const char* SHUFFLE;
-extern const char* SNAP;
-extern const char* ARCHIDEKT;
-extern const char* SHUTDOWN;
+extern const char LIGHTS_ON[];
+extern const char LIGHTS_OFF[];
+extern const char SHUFFLE[];
+extern const char SNAP[];
+extern const char ARCHIDEKT[];
+extern const char SHUTDOWN[];
 
 extern const char* STATUS_LIGHTS_ON;
 extern const char* STATUS_LIGHTS_OFF;
@@ -20,7 +20,8 @@ extern const char* STATUS_ARCHIDEKT;
 extern const char* STATUS_SHUTDOWN;
 extern const char* STATUS_UNKNOWN;
 
-#define ESP_TIMEOUT 2000
+#define ESP_READY_DELAY 100
+#define ESP_CMD_TIMEOUT 60000
 
 struct WiFiController{
 
@@ -35,6 +36,7 @@ void initESP(WiFiController* pCtrl, UART_HandleTypeDef* pUARTHandle, GPIO_TypeDe
 void signalReady(WiFiController* pCtrl);
 void signalBusy(WiFiController* pCtrl);
 HAL_StatusTypeDef getNextCMD(WiFiController* pCtrl, char* pCMDBuffer);
+void flushCMDBuffer(WiFiController* pCtrl);
 HAL_StatusTypeDef sendData(WiFiController* pCtrl, uint8_t* pDataBuffer, uint16_t size);
 
 #endif /* INC_WIFICONTROLLER_H_ */

@@ -91,8 +91,8 @@ uint16_t burstReadFIFO(ArducamController *, uint8_t**);
 
 //Helpers
 void printStatus(ArducamController*);
-void enable(ArducamController*);
-void disable(ArducamController*);
+void cam_enable(ArducamController*);
+void cam_disable(ArducamController*);
 void flashOn(ArducamController*);
 void flashOff(ArducamController*);
 void registerDump(ArducamController*);

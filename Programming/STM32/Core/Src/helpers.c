@@ -41,4 +41,17 @@ void i2cScan(){
 	}
 }
 
-
+char* statusToString(HAL_StatusTypeDef status){
+	switch(status){
+		case HAL_OK:
+			return "HAL_OK";
+		case HAL_ERROR:
+			return "HAL_ERROR";
+		case HAL_BUSY:
+			return "HAL_BUSY";
+		case HAL_TIMEOUT:
+			return "HAL_TIMEOUT";
+		default:
+			return "UNKNOWN STATUS";
+	}
+}

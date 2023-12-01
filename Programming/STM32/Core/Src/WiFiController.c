@@ -2,19 +2,19 @@
 #include "helpers.h"
 
 //Commands - Each 8 bytes long
-const char* LIGHTS_ON = "light_on";
-const char* LIGHTS_OFF = "lightoff";
-const char* SHUFFLE = "shuffle_";
-const char* SNAP = "picture_";
-const char* ARCHIDEKT = "archidekt";
-const char* SHUTDOWN = "shutdown";
+const char LIGHTS_ON[] = "light_on";
+const char LIGHTS_OFF[] = "lightoff";
+const char SHUFFLE[] = "shuffle_";
+const char SNAP[] = "picture_";
+const char ARCHIDEKT[] = "archidekt";
+const char SHUTDOWN[] = "shutdown";
 
-const char* STATUS_LIGHTS_ON = "Turning Lights On";
-const char* STATUS_LIGHTS_OFF = "Turning Lights Off";
-const char* STATUS_SHUFFLE = "Starting Shuffle";
-const char* STATUS_SNAP = "Taking a Picture";
-const char* STATUS_ARCHIDEKT = "Sending Deck to Archidekt";
-const char* STATUS_SHUTDOWN = "Shutting Down";
+const char* STATUS_LIGHTS_ON = "Turning Lights On\n";
+const char* STATUS_LIGHTS_OFF = "Turning Lights Off\n";
+const char* STATUS_SHUFFLE = "Starting Shuffle\n";
+const char* STATUS_SNAP = "Taking a Picture\n";
+const char* STATUS_ARCHIDEKT = "Sending Deck to Archidekt\n";
+const char* STATUS_SHUTDOWN = "Shutting Down\n";
 const char* STATUS_UNKNOWN = "Unknown Action";
 
 void initESP(WiFiController* pCtrl, UART_HandleTypeDef* pUARTHandle, GPIO_TypeDef* pGPIOPort, uint16_t readyFlagPin){
@@ -33,17 +33,43 @@ void signalBusy(WiFiController* pCtrl){
 }
 
 HAL_StatusTypeDef getNextCMD(WiFiController* pCtrl, char *pCMDBuffer){
+	HAL_StatusTypeDef cmdStatus = HAL_OK;
 	printf("Waiting for next CMD...\n");
 	signalReady(pCtrl);
-	HAL_Delay(100);
-	pCtrl->status = HAL_UART_Receive(pCtrl->pUARTHandle, (uint8_t*)  pCMDBuffer, 8, HAL_MAX_DELAY); // might need to figure out how to decide how much data to read in
-	printf("CMD FROM ESP: %s\n", pCMDBuffer);
+	HAL_Delay(ESP_READY_DELAY); // Wait for ESP to send the data
+	cmdStatus = HAL_UART_Receive(pCtrl->pUARTHandle, (uint8_t*) pCMDBuffer, 8, ESP_CMD_TIMEOUT); // Waits 60s for a CMD, then yields control
+	switch(cmdStatus){
+		case HAL_OK:
+			printf("CMD: %s\n", pCMDBuffer);
+			break;
+		case HAL_BUSY:
+			printf("CMD Buffer (RX) Busy\n");
+			break;
+		case HAL_ERROR:
+			printf("Error reading CMD from ESP\n");
+			pCtrl->status = HAL_ERROR;
+			break;
+		case HAL_TIMEOUT:
+			printf("Timed out waiting for CMD\n");
+			break;
+	}
+
 	signalBusy(pCtrl);
-	return pCtrl->status;
+	return cmdStatus;
+}
+
+// Cleans out the ESP_RX buffer
+// Note: Using this in the loop removes the ability to make a "Command Queue", so the buffer can only ever have one CMD at a time
+void flushCMDBuffer(WiFiController* pCtrl){
+	uint8_t byteRead = 0;
+	HAL_StatusTypeDef status = HAL_OK;
+	while(status == HAL_OK){
+		status = HAL_UART_Receive(pCtrl->pUARTHandle, &byteRead, 1, 0); //Should become HAL_TIMEOUT when there is no data left
+	}
 }
 
 HAL_StatusTypeDef sendData(WiFiController* pCtrl, uint8_t* pDataBuffer, uint16_t size){
 	printf("Sending %u bytes to ESP\n", size);
-	pCtrl->status = HAL_UART_Transmit(pCtrl->pUARTHandle, pDataBuffer, size, ESP_TIMEOUT);
+	pCtrl->status = HAL_UART_Transmit(pCtrl->pUARTHandle, pDataBuffer, size, HAL_MAX_DELAY);
 	return pCtrl -> status;
 }

@@ -12,7 +12,6 @@ typedef struct Servo Servo;
 struct Servo {
 	TIM_HandleTypeDef* pTIMHandle;
 	uint32_t channel;
-
 };
 
 typedef struct ServoController ServoController;

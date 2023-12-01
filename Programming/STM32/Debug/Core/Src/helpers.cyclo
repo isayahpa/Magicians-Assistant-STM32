@@ -2,3 +2,4 @@
 ../Core/Src/helpers.c:16:5:checkBit	1
 ../Core/Src/helpers.c:27:1:__io_putchar	1
 ../Core/Src/helpers.c:33:6:i2cScan	3
+../Core/Src/helpers.c:44:7:statusToString	5

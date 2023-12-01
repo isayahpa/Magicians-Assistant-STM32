@@ -25,11 +25,10 @@ void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleT
 	} else if(!isSPIWorking(pCtrl)){
 		printf("Arducam SPI Error.\n");
 	} else {
-		printf("I2C Check Passed\n");
+		printf("I2C Check Passed |");
 		printf("SPI Check Passed\n");
 		setDefaultSettings(pCtrl);
 		HAL_Delay(1000);
-		//clearFIFOFlag(pCtrl);
 	}
 
 	if(pCtrl->status != HAL_OK){
@@ -60,13 +59,13 @@ uint16_t singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer){
 		uint16_t bufferSize = burstReadFIFO(pCtrl, ppBuffer);
 
 		printf("Capture Complete!\n");
-		printf("Picture Buffer: \n");
+		/*printf("Picture Buffer: \n");
 		for(int i = 0; i < bufferSize; i++){
 			printf("%x", (*ppBuffer)[i]);
 			//if(!(i % 100)){printf("\n");}
 		}
 		printf("\n");
-
+		*/
 		return bufferSize;
 }
 
@@ -84,11 +83,11 @@ uint16_t burstReadFIFO(ArducamController *pCtrl, uint8_t **ppBuffer){
 	*ppBuffer = calloc(transmissionSize, sizeof(uint8_t));
 
 	printf("Reading %lu bytes from Arducam\n", transmissionSize);
-	enable(pCtrl);
+	cam_enable(pCtrl);
 	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &cmd, *ppBuffer, 1, HAL_MAX_DELAY);
 	pCtrl -> status = HAL_SPI_Receive(pCtrl->pSPIHandle, *ppBuffer, transmissionSize, HAL_MAX_DELAY);
 	HAL_Delay(1000); // Just making sure all the data makes it through
-	disable(pCtrl);
+	cam_disable(pCtrl);
 
 	return transmissionSize;
 }
@@ -110,6 +109,7 @@ void setDefaultSettings(ArducamController* pCtrl){
 	i2cRegWrite(pCtrl, 0x15, &data, 1);
 	i2cWriteMultiple(pCtrl, OV2640_320x240_JPEG);
 
+	// Sets VSync Polarity Low
 	data = 0x02;
 	spiRegWrite(pCtrl, (uint8_t)0x03, &data, 1);
 
@@ -163,7 +163,7 @@ void i2cWriteMultiple(ArducamController* pCtrl, const struct SensorReg *regList)
 
 void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t size){
 
-	enable(pCtrl); // CS Pin Set LOW
+	cam_enable(pCtrl); // CS Pin Set LOW
 	HAL_Delay(CS_DELAY);
 	uint8_t maskedAddr = reg | SPI_WRITE_MASK; // a 1 followed by Reg addr, to write to reg
 
@@ -171,17 +171,17 @@ void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t
 	pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, &maskedAddr, (uint16_t)1, CAM_TIMEOUT);
 	pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, pData, size, CAM_TIMEOUT);
 
-	disable(pCtrl);
+	cam_disable(pCtrl);
 }
 
 void spiRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_t size){
-	enable(pCtrl);
+	cam_enable(pCtrl);
 	HAL_Delay(CS_DELAY);
 	uint8_t maskedAddr = reg & SPI_READ_MASK; // a 0 followed by register to read
 	uint8_t dummyByte = 0x00;
 	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &maskedAddr, pBuffer, (uint16_t)1, CAM_TIMEOUT);
 	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &dummyByte, pBuffer, size, CAM_TIMEOUT);
-	disable(pCtrl);
+	cam_disable(pCtrl);
 	printf("(SPI) Read 0x%02X from 0x%02X\n", *pBuffer, reg);
 }
 
@@ -264,11 +264,11 @@ uint32_t getFIFOLength(ArducamController *pCtrl){
 	return fifoLength;
 }
 
-void enable(ArducamController* pCtrl){
+void cam_enable(ArducamController* pCtrl){
 	HAL_GPIO_WritePin(pCtrl->pCSPort, pCtrl->csPinNo, GPIO_PIN_RESET);
 }
 
-void disable(ArducamController* pCtrl){
+void cam_disable(ArducamController* pCtrl){
 	HAL_GPIO_WritePin(pCtrl->pCSPort, pCtrl->csPinNo, GPIO_PIN_SET);
 }
 

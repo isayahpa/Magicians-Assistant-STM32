@@ -7,5 +7,6 @@
 
 int checkBit(uint8_t, int);
 void initHelpers(UART_HandleTypeDef*, I2C_HandleTypeDef*);
+char* statusToString(HAL_StatusTypeDef status);
 
 #endif /* INC_HELPERS_H_ */

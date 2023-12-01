@@ -4,12 +4,12 @@
 //Commands to be sent to STM32
 #define BUFFER_SIZE 5000
 
-const char* LIGHTS_ON = "light_on";
-const char* LIGHTS_OFF = "lightoff";
-const char* SHUFFLE = "shuffle_";
-const char* SNAP = "picture_";
-const char* ARCHIDEKT = "archidekt";
-const char* SHUTDOWN = "shutdown";
+const String LIGHTS_ON = "light_on";
+const String LIGHTS_OFF = "lightoff";
+const String SHUFFLE = "shuffle_";
+const String SNAP = "picture_";
+const String ARCHIDEKT = "archidekt";
+const String SHUTDOWN = "shutdown";
 
 const String STATUS_LIGHTS_ON = "Turning Lights On";
 const String STATUS_LIGHTS_OFF = "Turning Lights Off";
@@ -25,17 +25,18 @@ const char* password = "Squeegoo";
 
 // Set web server port number to 80
 WiFiServer server(80);
-HardwareSerial STMSerialPort(2);
+HardwareSerial STMSerialPort(2); // Rx = 16 (Yellow), Tx (Blue) = 17
 
 // Variable to store the HTTP request
 String header;
-uint8_t *dataBuffer;
-String pictureDataBuffer;
-String textDataBuffer;
+uint8_t dataBuffer[BUFFER_SIZE] = {};
+char *pictureDataBuffer;
+String textDataBuffer = "";
 
-// Auxiliar variables to store the current output state
-String status = "Idle";
+// Client state variables
+String status;
 bool lightsOn = false;
+bool showPreview = false;
 
 // Assign output variables to GPIO pins
 const int STM_READY_PIN = 21;
@@ -45,13 +46,20 @@ unsigned long currentTime = millis();
 // Previous time
 unsigned long previousTime = 0; 
 // Define timeout time in milliseconds (example: 2000ms = 2s)
-const long timeoutTime = 5000;
+const long timeoutTime = 20000;
 
 void setup() {
-  Serial.begin(115200);
-  STMSerialPort.begin(115200, SERIAL_8N1, 16, 17);
-  pinMode(STM_READY_PIN, INPUT);
   
+  Serial.begin(115200);
+  //STMSerialPort.begin(115200, SERIAL_8N1, 16, 17);
+  //STMSerialPort.begin(115200, SERIAL_8N1, RXPIN, TXPIN); // Rx = 4, Tx = 5
+  STMSerialPort.begin(115200); // Rx = 16 (Yellow), Tx (Blue) = 17
+
+  pinMode(STM_READY_PIN, INPUT);
+  status = "Init";
+  lightsOn = false;
+  showPreview = false;
+
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -132,7 +140,11 @@ void loop(){
             client.println("<p><a href=\"/shutdown/\"><button class=\"button\">Shutdown</button></a></p>");
             client.println("</div>");
 
-            client.println("<img src=\"data:image/jpg;base64, " + pictureDataBuffer + "\">");
+            //Preview the photo data when photos are sent
+            if(showPreview){
+              client.println("<img src=\"data:image/jpg;base64, " + String(pictureDataBuffer) + "\" alt=\"Arducam Preview\"/>");
+            }
+
             client.println("<p>Status: " + status + "</p>");
             client.println("</body>");
             client.println("</html>");
@@ -162,46 +174,44 @@ void loop(){
 
 //ESP32's Command Handlers 
 void sendCMD(String cmd){
+  //removed input check to avoid buffer desync
+
+  unsigned long timeBefSend = micros();
+  flushSTMRXBuffer(); // Clear the RX buffer in case we need to take data in after the command
+  STMSerialPort.print(cmd.c_str()); // Send CMD
+  STMSerialPort.flush();
+  unsigned long timeAftSend = micros();
+  Serial.println("Took " + String(timeAftSend - timeBefSend) + "μs to send CMD.");
   
-  if(cmd == LIGHTS_ON){
-    Serial.println(STATUS_LIGHTS_ON);
-  } else if (cmd == LIGHTS_OFF){
-    Serial.println(STATUS_LIGHTS_OFF);
-  } else if (cmd == SHUFFLE){
-    Serial.println(STATUS_SHUFFLE);
-  } else if (cmd == SNAP){
-    Serial.println(STATUS_SNAP);
-  } else if (cmd == ARCHIDEKT){
-    Serial.println(STATUS_ARCHIDEKT);
-  } else if (cmd == SHUTDOWN) {
-    Serial.println(STATUS_SHUTDOWN);
-  } else {
-    Serial.println(STATUS_UNKNOWN);
-    return;
-  }
-   
-  STMSerialPort.print(cmd); // Send CMD
-  if(waitForSTM() == false) {//Wait for STM to execute the command
-    Serial.println("Timed out waiting for STM, must be busy");
-    return;
+  if(waitForSTM() == false) { //Wait for STM to execute the command
+    Serial.println("Timed out waiting for STM, must be busy..."); 
+    return; // Return on timeout so that the client can still get updated
   }
 
+  Serial.println("STM Completed. Updating ESP State");
   // On a successful wait, update state variables
   if(cmd == LIGHTS_ON){
+    status = STATUS_LIGHTS_ON;
     lightsOn = true;
   } else if (cmd == LIGHTS_OFF){
+    status = STATUS_LIGHTS_OFF;
     lightsOn = false;
   } else if (cmd == SHUFFLE){
+    status = STATUS_SHUFFLE;
   } else if (cmd == SNAP){
+    status = STATUS_SNAP;
     int nBytesToRead = STMSerialPort.available();
-    dataBuffer = readFromSTM(nBytesToRead);
-    pictureDataBuffer = hexToBase64(dataBuffer, nBytesToRead);  //When getting picture data convert to Base64 so that I can see it in the preview
+    readFromSTM(nBytesToRead);
+    //pictureDataBuffer = hexToBase64(dataBuffer, nBytesToRead);  //When getting picture data convert to Base64 so that I can see it in the preview
+    hexToBase64(dataBuffer, nBytesToRead);
+    showPreview = true;
   } else if (cmd == ARCHIDEKT){
+    status = STATUS_ARCHIDEKT;
     int nBytesToRead = STMSerialPort.available();
-    dataBuffer = readFromSTM(nBytesToRead);
+    readFromSTM(nBytesToRead);
     textDataBuffer = (char*) dataBuffer;
   } else if (cmd == SHUTDOWN) {
-
+    status = STATUS_SHUTDOWN;
   }
 
 }
@@ -210,24 +220,32 @@ void sendCMD(String cmd){
 //Returns true if the Ready Flag was noticed successfully, False on Timeout
 bool waitForSTM(){
   Serial.println("Waiting for STM To Be Ready");
-  unsigned long startTime = millis();SSH1106 
+  unsigned long startTime = millis(); 
   while(digitalRead(STM_READY_PIN) != HIGH){
     if(millis() - startTime >= timeoutTime){
       return false;
     }
   }
-
   return true;
 }
 
-uint8_t* readFromSTM(int nBytes){
-    uint8_t output[nBytes];
-    status = "Reading STM Data";
+void readFromSTM(int nBytes){
+  Serial.println("Reading " + String(nBytes) + " from STM");
     for(int i = 0; i < nBytes; i++){
-      output[i] = STMSerialPort.read();
+      dataBuffer[i] = STMSerialPort.read();
     }
-    
-    return output;
+
+    Serial.println("Raw Data from STM:");
+    for(int i = 0; i < nBytes; i++){
+      Serial.print(String(dataBuffer[i], HEX));
+    }
+    Serial.println();
+}
+
+void flushSTMRXBuffer(){
+  while(STMSerialPort.available()){
+    STMSerialPort.read();
+  }
 }
 
 const char BASE64LOOKUPTABLE[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -311,5 +329,10 @@ String hexToBase64(uint8_t *inputBytes, int nBytes){
     output += base64Digit2;
     output += base64Digit3;
   }
+
+  Serial.println("Base 64 Data = " + output);
+  strcpy(pictureDataBuffer, output.c_str());
   return output;
 }
+
+

@@ -61,6 +61,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define SD_CS_Pin GPIO_PIN_1
+#define SD_CS_GPIO_Port GPIOB
 #define CAM_FLASH_Pin GPIO_PIN_6
 #define CAM_FLASH_GPIO_Port GPIOC
 #define READY_FLAG_Pin GPIO_PIN_7
@@ -75,7 +77,7 @@ void Error_Handler(void);
 #define SWO_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-
+#define SD_SPI_HANDLE hspi2
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

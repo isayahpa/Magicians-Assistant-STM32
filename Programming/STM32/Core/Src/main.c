@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "fatfs.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -26,7 +27,7 @@
 #include "ArducamController.h"
 #include "WiFiController.h"
 #include "ServoController.h"
-#include "helpers.h"
+//#include "helpers.h"
 
 /* USER CODE END Includes */
 
@@ -49,6 +50,7 @@
 I2C_HandleTypeDef hi2c1;
 
 SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi2;
 
 TIM_HandleTypeDef htim2;
 
@@ -67,6 +69,7 @@ static void MX_SPI1_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
 
 
@@ -75,6 +78,14 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void fullStatusReport(ArducamController* pArducam, WiFiController* pESP, ServoController* pServoController){
+
+	if(!pArducam){ printf("Null Arducam Pointer!\n"); }
+	if(!pESP){ printf("Null WiFiController Pointer!\n"); }
+	if(!pServoController){ printf("Null ServoController Pointer!\n"); }
+
+	printf("Arducam Status : %s\nESP Status : %s\nServo Status : %s\n", statusToString(pArducam->status), statusToString(pESP->status), statusToString(pServoController->status));
+}
 
 /* USER CODE END 0 */
 
@@ -111,6 +122,8 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
   MX_TIM2_Init();
+  MX_FATFS_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   //Initialize Helper Functions
 
@@ -121,7 +134,7 @@ int main(void)
   uint8_t *pictureBuffer = 0;
   uint16_t pictureBufferSize = 0;
 
-  char pCMDBuffer[8] = "CMDBUFFR";
+  char pCMDBuffer[] = "CMDBUFFR";
 
   //Initialize the Peripheral Controllers
   ArducamController arducam;
@@ -139,46 +152,56 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (getNextCMD(&esp32, pCMDBuffer) == HAL_OK)
+  flushCMDBuffer(&esp32); //Clear out any old commands that may have come in while Assistant wasn't looking
+  while (esp32.status == HAL_OK) // Might add the other Controllers here if needed
   {
-		if(pCMDBuffer == LIGHTS_ON){
+	// Continuously look for commands on ESP_RX, as long as ESP is working
+	if(getNextCMD(&esp32, pCMDBuffer) == HAL_OK){
+		if(strcmp(pCMDBuffer, LIGHTS_ON) == 0){
 			//Turn the Flash On
 			printf(STATUS_LIGHTS_ON);
 			flashOn(&arducam);
-		} else if (pCMDBuffer == LIGHTS_OFF){
+		} else if (strcmp(pCMDBuffer, LIGHTS_OFF) == 0){
 			//Turn the Flash Off
 			printf(STATUS_LIGHTS_OFF);
 			flashOff(&arducam);
-		} else if (pCMDBuffer == SHUFFLE){
+		} else if (strcmp(pCMDBuffer, SHUFFLE) == 0){
 			//Begin Shuffle Sequence
 			//TODO: Make a ServoController Module
 			printf(STATUS_SHUFFLE);
-		} else if (pCMDBuffer == SNAP){
+		} else if (strcmp(pCMDBuffer, SNAP) == 0){
 			//Take a Single Picture and Sends it to the ESP
+			//TODO: Will need to store picture data in SD card instead
 			printf(STATUS_SNAP);
 			pictureBufferSize = singleCapture(&arducam, &pictureBuffer);
-			sendData(&esp32, pictureBuffer, pictureBufferSize);
-		} else if (pCMDBuffer == ARCHIDEKT){
-			//Send the Deck to Archidekt
+			if(sendData(&esp32, pictureBuffer, pictureBufferSize) != HAL_OK){
+				printf("Failed to send photo data to ESP | Status = %s\n", statusToString(esp32.status));
+			}
+		} else if (strcmp(pCMDBuffer, ARCHIDEKT) == 0){
+			// Send the Deck to Archidekt
 			// Idea : Capture 100 photos, send each to ESP to go to curl for Image to Text API, then Receive Text, (display it?), send out to Archidekt
 			// Might be best to split into a "SCAN" cmd that scans a single card and prints the card name (at least for testing) and an "Archidekt" CMD
 			printf(STATUS_ARCHIDEKT);
-		} else if (pCMDBuffer == SHUTDOWN){
+		} else if (strcmp(pCMDBuffer, SHUTDOWN) == 0){
 			//Stop waiting for commands and exit the loop
 			printf(STATUS_SHUTDOWN);
 			break;
-		} else {
-			//Some strange command
-			printf("%s: %s", STATUS_UNKNOWN, pCMDBuffer);
+		} else { //Some strange command
+			printf("%s: \'%s\'\n", STATUS_UNKNOWN, pCMDBuffer);
 		}
-		signalReady(&esp32);
 	}
 
+	flushCMDBuffer(&esp32); // Flush again just to be sure the buffer is clear for the next command
+	signalReady(&esp32);
+  }
+  	printf("Exited Loop.\n");
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  	  printf("Goodbye!\n");
-  	  free(pictureBuffer);
+  	fullStatusReport(&arducam, &esp32, &servoController); // Just prints the statuses of every peripheral
+	flushCMDBuffer(&esp32);
+	free(pictureBuffer);
+	printf("Goodbye!\n");
   /* USER CODE END 3 */
 }
 
@@ -207,10 +230,10 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 14;
+  RCC_OscInitStruct.PLL.PLLN = 10;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV4;
+  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -221,11 +244,11 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -247,7 +270,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x00101926;
+  hi2c1.Init.Timing = 0x10909CEC;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -316,6 +339,46 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 7;
+  hspi2.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+  hspi2.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
 
 }
 
@@ -470,6 +533,9 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, CAM_FLASH_Pin|READY_FLAG_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
@@ -480,6 +546,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SD_CS_Pin */
+  GPIO_InitStruct.Pin = SD_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(SD_CS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : CAM_FLASH_Pin READY_FLAG_Pin */
   GPIO_InitStruct.Pin = CAM_FLASH_Pin|READY_FLAG_Pin;
