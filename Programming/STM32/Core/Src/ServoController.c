@@ -1,64 +1,182 @@
 #include "ServoController.h"
+#include "helpers.h"
+#include <string.h>
+#include <math.h>
 
-void initServoController(ServoController *pCtrl, Servo *servoList[]){
+
+HAL_StatusTypeDef initServoController(ServoController *pCtrl){
 	printf("Initializing Servo Controller\n");
-	pCtrl->servoList = servoList;
+
+	// Allocate ServoList
+	memset(pCtrl->servoList, 0, sizeof(Servo) * MAX_NUM_SERVOS);
+	pCtrl->numServos = 0;
 	pCtrl->status = HAL_OK;
 
-	//TODO:Will need to fix the indexing of the Servo list to be safer
-	int i = 0;
-	Servo *pServo = pCtrl->servoList[0];
-	while(pServo != NULL){
-		pServo = pCtrl -> servoList[i];
-		pCtrl->status = HAL_TIM_PWM_Start(pServo->pTIMHandle, pServo->channel);
-		if(pCtrl->status != HAL_OK){
-			printf("Failed to Start PWM for Servo #%lu | Status : %d\n", pServo->channel, pCtrl->status);
-			break;
-		}
-		i++;
-	}
-	resetAllServos(pCtrl);
+	return pCtrl->status;
 }
 
-void resetAllServos(ServoController *pCtrl){
-	printf("Resetting Servos\n");
-
-	int i = 0;
-	Servo *pServo = pCtrl->servoList[0];
-	while(pServo != NULL){
-		Servo *pServo = pCtrl->servoList[i];
-		pCtrl->status = setServoPosition(pServo, SERVO_POS_CENTER);
-		if(pCtrl->status != HAL_OK){
-			printf("Failed to Reset Servo #%lu\n | Status : %d", pServo->channel, pCtrl->status);
-			break;
-		}
-		i++;
+void addServo(ServoController *pCtrl, Servo servo){
+	if(pCtrl->numServos >= MAX_NUM_SERVOS){
+		printf("FAILED Add Servo (%s)\n", servo.name);
+		return;
 	}
+
+	pCtrl->servoList[pCtrl->numServos] = servo;
+	pCtrl->status = HAL_TIM_PWM_Start(servo.pTIMHandle, servo.channel);
+	setServoPosition(servo, SERVO_POS_CENTER);
+	if(pCtrl->status != HAL_OK){
+		printf("FAILED to Add  Servo (%s) | Status : %s\n", servo.name, stat2Str(pCtrl->status));
+	} else {
+		pCtrl->numServos += 1;
+		printf("SUCCESS Added Servo (%s)\n", servo.name);
+	}
+
 }
 
 //https://www.youtube.com/watch?v=AjN58ceQaF4
 //http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf
 //Position in degrees
-HAL_StatusTypeDef setServoPosition(Servo* pServo, int position){
-	// TODO: Learn the PWM part to change servo position
-	//Just a guess
-	printf("Setting Servo #%lu to %d\n", pServo->channel, position);
-	TIM_OC_InitTypeDef sConfigOC = {0};
-	uint32_t positionAsPulse = 0;
-	if(position == SERVO_POS_LEFT){
-		positionAsPulse = 2800;
-	} else if(position == SERVO_POS_CENTER){
-		positionAsPulse = 4200;
+
+void setServoPosition(Servo servo, int position){
+	printf("Setting Servo (%s) to %d\n", servo.name, position);
+	uint32_t CCR1Val;
+	int degrees;
+
+	if(position <= 0){
+		degrees = SERVO_POS_LEFT;
+	} else if(position >= 180){
+		degrees = SERVO_POS_RIGHT;
 	} else {
-		positionAsPulse = 5600;
+		degrees = position;
 	}
 
-	sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	sConfigOC.Pulse = positionAsPulse; //TODO: Period = 140000 rn, see if this makes Servo pulsewidth 1.5ms (0 position)
-	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+	float secPerDeg = .001 / 180;
+	float pulseTime = .001 + (degrees*secPerDeg);
+	float dutyCycle = (pulseTime / .02);
 
-	return HAL_TIM_PWM_ConfigChannel(pServo->pTIMHandle, &sConfigOC, pServo->channel);
+	CCR1Val = (uint32_t) (dutyCycle * 100);
+
+	printf("CCR Val = %lu\n", CCR1Val);
+	servo.pTIMHandle->Instance->CCR1 = CCR1Val;
+	HAL_Delay(SERVO_DELAY);
 
 }
 
+HAL_StatusTypeDef resetAllServos(ServoController *pCtrl){
+	printf("Resetting Servos...\n");
+
+	Servo servo;
+	for(int i = 0; i < pCtrl->numServos; i++){
+		servo = pCtrl->servoList[i];
+		setServoPosition(servo, SERVO_POS_CENTER);
+	}
+
+	return pCtrl->status;
+}
+
+//Helps test the servos
+void sweepServos(ServoController* pCtrl){
+	Servo servo;
+	for(int i = 0; i < 200; i++){
+		uint32_t CCR1Val = i;
+		servo = pCtrl->servoList[1];
+		printf("CCR Val = %lu\n", CCR1Val);
+		servo.pTIMHandle->Instance->CCR1 = CCR1Val;
+		HAL_Delay(SERVO_DELAY);
+	}
+	/*for(int i = 0; i < pCtrl->numServos; i++){
+		servo = pCtrl->servoList[i];
+		setServoPosition(servo, SERVO_POS_LEFT);
+		HAL_Delay(SERVO_DELAY);
+		setServoPosition(servo, SERVO_POS_RIGHT);
+		HAL_Delay(SERVO_DELAY);
+		setServoPosition(servo, SERVO_POS_CENTER);
+		HAL_Delay(SERVO_DELAY);
+	}*/
+}
+
+// Generates a random integer and flicks a card from the left and right piles one by one based on the bits of the number generated
+// Bit = 0 -> Left Pile | Bit = 1 -> Right Pile
+#define MAX_CARDS 160
+HAL_StatusTypeDef shuffle(ServoController *pCtrl, int numCards){
+
+	if(numCards > MAX_CARDS){
+		printf("FAILED Deck Shuffle. Too many cards.\n");
+		pCtrl->status = HAL_ERROR;
+	} else if(pCtrl->numServos < 2){
+		printf("FAILED Card Shuffle. Not enough servos connected.\n");
+		pCtrl->status = HAL_ERROR;
+	} else {
+
+		HAL_RNG_StateTypeDef state = HAL_RNG_GetState(pCtrl->pRNGHandle);
+		if(state != HAL_RNG_STATE_READY){
+			printf("| RNG Error : %x\n", state);
+			pCtrl->status = HAL_ERROR;
+		} else {
+			int nRandoms = ceil(numCards/32); //Number of random numbers we'll need.
+			uint32_t rand = 0;
+			int cardsLeft = numCards;
+
+			//Generate as many random numbers as necessary (1 bit per card)
+			for(int i = 0; i < nRandoms; i++){
+				pCtrl->status = HAL_RNG_GenerateRandomNumber(pCtrl->pRNGHandle, &rand);
+				if(pCtrl->status != HAL_OK){
+					printf("FAILED Generating Random Number\n");
+					printStatus(pCtrl);
+					break;
+				} else {
+					//Process 32 cards at a time
+					for(int cardIdx = 0; cardIdx < 32; cardIdx++){
+						int pile = checkBit(rand, cardIdx);
+						drawCard(pCtrl, pile);
+						cardsLeft--;
+					}
+				}
+			}
+		}
+	}
+
+	return pCtrl->status;
+}
+
+// Pile = 0 -> Draw from Left Pile
+// Pile = 1 -> Draw form Right Pile
+void drawCard(ServoController *pCtrl, int pile){
+	int servoNo = pile;
+	if(pCtrl->numServos <= servoNo){
+		printf("FAILED Card Draw. Servo #%d not attached.\n", pile);
+		return;
+	}
+
+	// Makes servo kick outwards then inwards
+	Servo servo = pCtrl->servoList[servoNo];
+	if(servoNo % 2 == 0){	// Left Servo
+		setServoPosition(servo, SERVO_POS_LEFT);
+		HAL_Delay(SERVO_DELAY);
+		setServoPosition(servo, SERVO_POS_RIGHT);
+		HAL_Delay(SERVO_DELAY);
+	} else {	// Right Servo
+		setServoPosition(servo, SERVO_POS_RIGHT);
+		HAL_Delay(SERVO_DELAY);
+		setServoPosition(servo, SERVO_POS_LEFT);
+		HAL_Delay(SERVO_DELAY);
+	}
+
+}
+
+HAL_StatusTypeDef disconnectServos(ServoController* pCtrl){
+	printf("Disconnecting Servo Controller...\n");
+
+	resetAllServos(pCtrl);
+	Servo servo;
+	for(int i = 0; i < pCtrl->numServos; i++){
+		servo = pCtrl->servoList[i];
+
+		pCtrl->status = HAL_TIM_PWM_Stop(servo.pTIMHandle, servo.channel);
+		if(pCtrl->status != HAL_OK){
+			printf("FAILED to Stop Servo (%s)\n", servo.name);
+		}
+	}
+
+	return pCtrl->status;
+}

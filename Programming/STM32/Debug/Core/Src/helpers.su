@@ -1,5 +1,6 @@
-../Core/Src/helpers.c:9:6:initHelpers	16	static
-../Core/Src/helpers.c:16:5:checkBit	16	static
-../Core/Src/helpers.c:27:1:__io_putchar	16	static
-../Core/Src/helpers.c:33:6:i2cScan	16	static
-../Core/Src/helpers.c:44:7:statusToString	16	static
+../Core/Src/helpers.c:10:6:initHelpers	16	static
+../Core/Src/helpers.c:21:1:__io_putchar	16	static
+../Core/Src/helpers.c:29:5:checkBit	16	static
+../Core/Src/helpers.c:34:6:i2cScan	24	static
+../Core/Src/helpers.c:45:7:stat2Str	16	static
+../Core/Src/helpers.c:65:6:printStatus	24	static

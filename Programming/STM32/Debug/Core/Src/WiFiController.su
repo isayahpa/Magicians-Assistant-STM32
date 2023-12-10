@@ -1,6 +1,7 @@
-../Core/Src/WiFiController.c:20:6:initESP	24	static
-../Core/Src/WiFiController.c:27:6:signalReady	16	static
-../Core/Src/WiFiController.c:31:6:signalBusy	16	static
-../Core/Src/WiFiController.c:35:19:getNextCMD	24	static
-../Core/Src/WiFiController.c:63:6:flushCMDBuffer	24	static
-../Core/Src/WiFiController.c:71:19:sendData	24	static
+../Core/Src/WiFiController.c:22:19:initESP	16	static
+../Core/Src/WiFiController.c:28:19:disconnectESP	16	static
+../Core/Src/WiFiController.c:35:6:signalReady	16	static
+../Core/Src/WiFiController.c:39:6:signalBusy	16	static
+../Core/Src/WiFiController.c:43:19:getNextCMD	24	static
+../Core/Src/WiFiController.c:71:6:clearCMDBuffer	24	static
+../Core/Src/WiFiController.c:79:19:sendData	24	static

@@ -1,3 +1,8 @@
-../Core/Src/ServoController.c:3:6:initServoController	3
-../Core/Src/ServoController.c:23:6:resetAllServos	3
-../Core/Src/ServoController.c:42:19:setServoPosition	3
+../Core/Src/ServoController.c:7:19:initServoController	1
+../Core/Src/ServoController.c:18:6:addServo	3
+../Core/Src/ServoController.c:40:6:setServoPosition	3
+../Core/Src/ServoController.c:65:19:resetAllServos	2
+../Core/Src/ServoController.c:78:6:sweepServos	2
+../Core/Src/ServoController.c:101:19:shuffle	8
+../Core/Src/ServoController.c:144:6:drawCard	3
+../Core/Src/ServoController.c:167:19:disconnectServos	3

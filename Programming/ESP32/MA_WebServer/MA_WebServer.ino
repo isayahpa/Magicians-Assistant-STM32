@@ -1,5 +1,7 @@
 #include <WiFi.h>
 #include <HardwareSerial.h>
+//#include <SD.h>
+
 
 //Commands to be sent to STM32
 #define BUFFER_SIZE 5000
@@ -9,6 +11,7 @@ const String LIGHTS_OFF = "lightoff";
 const String SHUFFLE = "shuffle_";
 const String SNAP = "picture_";
 const String ARCHIDEKT = "archidekt";
+const String SD_READ = "read_sd_";
 const String SHUTDOWN = "shutdown";
 
 const String STATUS_LIGHTS_ON = "Turning Lights On";
@@ -16,12 +19,14 @@ const String STATUS_LIGHTS_OFF = "Turning Lights Off";
 const String STATUS_SHUFFLE = "Starting Shuffle";
 const String STATUS_SNAP = "Taking a Picture";
 const String STATUS_ARCHIDEKT = "Sending Deck to Archidekt";
+const String STATUS_SD_READ = "Requesting SD Data";
 const String STATUS_SHUTDOWN = "Shutting Down";
 const String STATUS_UNKNOWN = "Unknown Action";
 
+
 // Replace with your network credentials
-const char* ssid = "LumII";
-const char* password = "Squeegoo";
+const char* ssid = "Varsity WiFi";
+const char* password = "\0";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -29,8 +34,10 @@ HardwareSerial STMSerialPort(2); // Rx = 16 (Yellow), Tx (Blue) = 17
 
 // Variable to store the HTTP request
 String header;
+String filename = "";
+
 uint8_t dataBuffer[BUFFER_SIZE] = {};
-char *pictureDataBuffer;
+String pictureDataBuffer = "";
 String textDataBuffer = "";
 
 // Client state variables
@@ -51,8 +58,6 @@ const long timeoutTime = 20000;
 void setup() {
   
   Serial.begin(115200);
-  //STMSerialPort.begin(115200, SERIAL_8N1, 16, 17);
-  //STMSerialPort.begin(115200, SERIAL_8N1, RXPIN, TXPIN); // Rx = 4, Tx = 5
   STMSerialPort.begin(115200); // Rx = 16 (Yellow), Tx (Blue) = 17
 
   pinMode(STM_READY_PIN, INPUT);
@@ -142,14 +147,16 @@ void loop(){
 
             //Preview the photo data when photos are sent
             if(showPreview){
-              client.println("<img src=\"data:image/jpg;base64, " + String(pictureDataBuffer) + "\" alt=\"Arducam Preview\"/>");
+              client.println("<img src=\"data:image/jpg;base64, " + String(pictureDataBuffer) + "\" alt=\"Arducam Preview\"/>\n");
+              //filename = "image.jpg";
+              //showPreviewInClient(filename, client);
             }
 
             client.println("<p>Status: " + status + "</p>");
             client.println("</body>");
             client.println("</html>");
             
-
+            //A redirect to the original IP will help prevent dupe cmds
 
             // The HTTP response ends with another blank line
             client.println();
@@ -174,7 +181,6 @@ void loop(){
 
 //ESP32's Command Handlers 
 void sendCMD(String cmd){
-  //removed input check to avoid buffer desync
 
   unsigned long timeBefSend = micros();
   flushSTMRXBuffer(); // Clear the RX buffer in case we need to take data in after the command
@@ -200,11 +206,17 @@ void sendCMD(String cmd){
     status = STATUS_SHUFFLE;
   } else if (cmd == SNAP){
     status = STATUS_SNAP;
+    showPreview = true;
+    //showPreviewInClient(String filename, WiFiClient client)
     int nBytesToRead = STMSerialPort.available();
     readFromSTM(nBytesToRead);
-    //pictureDataBuffer = hexToBase64(dataBuffer, nBytesToRead);  //When getting picture data convert to Base64 so that I can see it in the preview
-    hexToBase64(dataBuffer, nBytesToRead);
-    showPreview = true;
+    pictureDataBuffer = hexToBase64(&(dataBuffer[0]), nBytesToRead);
+  } else if (cmd == SD_READ){
+    /*while(1){
+      int nBytes = STMSerialPort.available();
+      readFromSTM(nBytes);
+
+    }*/
   } else if (cmd == ARCHIDEKT){
     status = STATUS_ARCHIDEKT;
     int nBytesToRead = STMSerialPort.available();
@@ -229,10 +241,40 @@ bool waitForSTM(){
   return true;
 }
 
+/*void showPreviewInClient(String filename, WiFiClient client){
+  if(!SD.begin(SD_CS)){
+      Serial.println("FAILED to init SD card");
+      showPreview = false;
+      return;
+    }
+  if(!SD.exists(filename)){
+    Serial.println("FAILED to find file '" + filename + "'");
+    showPreview = false;
+    return;
+  }
+
+  client.print("<img src=\"data:image/jpg;base64, ");
+
+  //Read 3 bytes -> convert to Base64 -> Print the 4 bytes to client
+  char* readBuf = "";
+  String b64Out = "";
+  photoFile = SD.open(filename, FILE_READ);
+
+  while(photoFile.available()){
+    photoFile.readBytes(readBuf, 3);
+    b64Out = hexToBase64(readBuf, 3);
+    client.printf("%s", b64Out);
+  }
+  client.print("\" alt=\"Arducam Preview\"/>\n");
+
+  SD.end();
+}*/
+
 void readFromSTM(int nBytes){
+  //dataBuffer = ;
   Serial.println("Reading " + String(nBytes) + " from STM");
     for(int i = 0; i < nBytes; i++){
-      dataBuffer[i] = STMSerialPort.read();
+      dataBuffer[i] = (uint8_t) STMSerialPort.read();
     }
 
     Serial.println("Raw Data from STM:");
@@ -331,7 +373,7 @@ String hexToBase64(uint8_t *inputBytes, int nBytes){
   }
 
   Serial.println("Base 64 Data = " + output);
-  strcpy(pictureDataBuffer, output.c_str());
+  //strcpy(pictureDataBuffer, output.c_str());
   return output;
 }
 

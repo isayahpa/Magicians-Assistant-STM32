@@ -7,6 +7,7 @@ const char LIGHTS_OFF[] = "lightoff";
 const char SHUFFLE[] = "shuffle_";
 const char SNAP[] = "picture_";
 const char ARCHIDEKT[] = "archidekt";
+const char SD_READ[] = "read_sd_";
 const char SHUTDOWN[] = "shutdown";
 
 const char* STATUS_LIGHTS_ON = "Turning Lights On\n";
@@ -14,14 +15,21 @@ const char* STATUS_LIGHTS_OFF = "Turning Lights Off\n";
 const char* STATUS_SHUFFLE = "Starting Shuffle\n";
 const char* STATUS_SNAP = "Taking a Picture\n";
 const char* STATUS_ARCHIDEKT = "Sending Deck to Archidekt\n";
+const char* STATUS_SD_READ = "ESP Requesting SD Data\n";
 const char* STATUS_SHUTDOWN = "Shutting Down\n";
 const char* STATUS_UNKNOWN = "Unknown Action";
 
-void initESP(WiFiController* pCtrl, UART_HandleTypeDef* pUARTHandle, GPIO_TypeDef* pGPIOPort, uint16_t readyFlagPin){
-	pCtrl->pUARTHandle = pUARTHandle;
-	pCtrl->pGPIOPort = pGPIOPort;
-	pCtrl->readyFlagPin = readyFlagPin;
-	pCtrl->status = HAL_OK;
+HAL_StatusTypeDef initESP(WiFiController* pCtrl){
+	printf("Initialzing WiFi Controller...\n");
+	signalBusy(pCtrl);
+	return pCtrl->status;
+}
+
+HAL_StatusTypeDef disconnectESP(WiFiController* pCtrl){
+	printf("Disconnecting WiFi Controller...\n");
+	signalBusy(pCtrl);
+	clearCMDBuffer(pCtrl);
+	return pCtrl->status;
 }
 
 void signalReady(WiFiController* pCtrl){
@@ -60,7 +68,7 @@ HAL_StatusTypeDef getNextCMD(WiFiController* pCtrl, char *pCMDBuffer){
 
 // Cleans out the ESP_RX buffer
 // Note: Using this in the loop removes the ability to make a "Command Queue", so the buffer can only ever have one CMD at a time
-void flushCMDBuffer(WiFiController* pCtrl){
+void clearCMDBuffer(WiFiController* pCtrl){
 	uint8_t byteRead = 0;
 	HAL_StatusTypeDef status = HAL_OK;
 	while(status == HAL_OK){
@@ -68,8 +76,8 @@ void flushCMDBuffer(WiFiController* pCtrl){
 	}
 }
 
-HAL_StatusTypeDef sendData(WiFiController* pCtrl, uint8_t* pDataBuffer, uint16_t size){
+HAL_StatusTypeDef sendData(WiFiController* pCtrl, void* pDataBuffer, uint16_t size){
 	printf("Sending %u bytes to ESP\n", size);
-	pCtrl->status = HAL_UART_Transmit(pCtrl->pUARTHandle, pDataBuffer, size, HAL_MAX_DELAY);
+	pCtrl->status = HAL_UART_Transmit(pCtrl->pUARTHandle, (const uint8_t*) pDataBuffer, size, HAL_MAX_DELAY);
 	return pCtrl -> status;
 }

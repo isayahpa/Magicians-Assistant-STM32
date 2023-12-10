@@ -2,47 +2,57 @@
 #include "ArducamController.h"
 #include "helpers.h"
 #include <stdlib.h>
+#include <string.h>
 
 /* Notes:
  * The chip select signal should always be LOW during the SPI read or write bus cycle
  * I2C interfaces directly with the OV2640 sensor (the camera itself)
  * SPI interfaces with the Chip as a whole, to indirectly control the camera
  */
-void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleTypeDef* pHSPI, GPIO_TypeDef* pCSPort, uint16_t csPinNo, GPIO_TypeDef* pFlashPort, uint16_t flashPinNo){
+//void initArducam(ArducamController* pCtrl, I2C_HandleTypeDef* pHI2C, SPI_HandleTypeDef* pHSPI, GPIO_TypeDef* pCSPort, uint16_t csPinNo, GPIO_TypeDef* pFlashPort, uint16_t flashPinNo){
+HAL_StatusTypeDef initArducam(ArducamController* pCtrl){
 	printf("Initializing ArduCam\n");
-	pCtrl->pI2CHandle = pHI2C;
-	pCtrl->pSPIHandle = pHSPI;
-	pCtrl->status = HAL_OK;
-	pCtrl -> pCSPort = pCSPort;
-	pCtrl -> csPinNo = csPinNo;
-	pCtrl -> pFlashPort = pFlashPort;
-	pCtrl -> flashPinNo = flashPinNo;
 
 	resetCPLD(pCtrl);
-	if((pCtrl->status = HAL_I2C_IsDeviceReady(pHI2C, I2C_ADDR_WRITE, 1, HAL_MAX_DELAY)) != HAL_OK ||
-			(pCtrl->status = HAL_I2C_IsDeviceReady(pHI2C, I2C_ADDR_READ, 1, HAL_MAX_DELAY != HAL_OK))){
+	if((pCtrl->status = HAL_I2C_IsDeviceReady(pCtrl->pI2CHandle, I2C_ADDR_WRITE, 1, HAL_MAX_DELAY)) != HAL_OK ||
+			(pCtrl->status = HAL_I2C_IsDeviceReady(pCtrl->pI2CHandle, I2C_ADDR_READ, 1, HAL_MAX_DELAY != HAL_OK))){
 		printf("Arducam I2C Error.\n");
 	} else if(!isSPIWorking(pCtrl)){
 		printf("Arducam SPI Error.\n");
 	} else {
-		printf("I2C Check Passed |");
-		printf("SPI Check Passed\n");
+		printf("Arducam I2C Check Passed | SPI Check Passed\n");
+
+		pCtrl->pictureBufferSize = 0;
+		pCtrl->base64Size = 0;
+		memset(pCtrl->pictureBuffer, 0, MAX_PIC_BUF_SIZE);
+		memset(pCtrl->base64Buffer, 0, MAX_BASE64_BUF_SIZE);
+
 		setDefaultSettings(pCtrl);
 		HAL_Delay(1000);
+		shutter(pCtrl);
 	}
 
+
+
 	if(pCtrl->status != HAL_OK){
-		printf("Arducam Init Fail\n");
+		printf("FAILED Arducam Init\n");
 	} else {
-		printf("Arducam Init Success!\n");
+		printf("SUCCESS Arducam Init\n");
 	}
+
+	return pCtrl->status;
 
 	//printStatus(pCtrl);
 }
 
-//Fills *ppBuffer with the Picture Data
-//Returns the # of bytes read from the FIFO
-uint16_t singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer){
+//Deconstructor
+HAL_StatusTypeDef disconnectArducam(ArducamController* pCtrl){
+	printf("Disconnecting Arducam Controller...\n");
+	return pCtrl->status;
+}
+
+//Fills pictureBuffer with the Picture Data
+HAL_StatusTypeDef singleCapture(ArducamController* pCtrl){
 		printf("Starting Capture\n");
 
 		flashOn(pCtrl);
@@ -56,40 +66,85 @@ uint16_t singleCapture(ArducamController* pCtrl, uint8_t **ppBuffer){
 		printf("FIFO Write Finished!\n");
 		flashOff(pCtrl);
 
-		uint16_t bufferSize = burstReadFIFO(pCtrl, ppBuffer);
-
-		printf("Capture Complete!\n");
-		/*printf("Picture Buffer: \n");
-		for(int i = 0; i < bufferSize; i++){
-			printf("%x", (*ppBuffer)[i]);
-			//if(!(i % 100)){printf("\n");}
+		if(burstReadFIFO(pCtrl) == 0){
+			pCtrl->status = HAL_ERROR;
+		} else {
+			picToBase64(pCtrl);
 		}
-		printf("\n");
-		*/
-		return bufferSize;
+
+		if(pCtrl->status != HAL_OK){
+			printf("FAILED Single Snap\n");
+
+		} else {
+			printf("SUCCESS Single Snap\n");
+		}
+
+		return pCtrl->status;
 }
 
 //Returns the amount of data (in bytes) read from FIFO
-uint16_t burstReadFIFO(ArducamController *pCtrl, uint8_t **ppBuffer){
-	uint8_t cmd = FIFO_BURST_READ;
+uint16_t burstReadFIFO(ArducamController *pCtrl){
+
 	uint32_t fifoLength = getFIFOLength(pCtrl);
 	uint32_t transmissionSize = fifoLength;
-	if(fifoLength >= 0xFFFF){
+	if(fifoLength >= 0x5FFF){
 		printf("Had to Truncate FIFO Transfer\n");
-		transmissionSize = 0xFFFF;
+		transmissionSize = 0x5FFF;
+	} else if(fifoLength == 0){
+		printf("FAILED burst read FIFO, FIFO has no data\n");
+		pCtrl->pictureBufferSize = 0;
+		return 0;
 	}
 
-	// Allocate some space for the buffer
-	*ppBuffer = calloc(transmissionSize, sizeof(uint8_t));
+	//clearPicBuf(pCtrl);
+	pCtrl->pictureBufferSize = transmissionSize; //TODO: Need to figure out how much data to buffer
 
-	printf("Reading %lu bytes from Arducam\n", transmissionSize);
+	printf("Reading %u bytes from Arducam\n", pCtrl->pictureBufferSize);
 	cam_enable(pCtrl);
-	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &cmd, *ppBuffer, 1, HAL_MAX_DELAY);
-	pCtrl -> status = HAL_SPI_Receive(pCtrl->pSPIHandle, *ppBuffer, transmissionSize, HAL_MAX_DELAY);
-	HAL_Delay(1000); // Just making sure all the data makes it through
-	cam_disable(pCtrl);
 
-	return transmissionSize;
+	uint8_t cmd = FIFO_BURST_READ;
+	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &cmd, pCtrl->pictureBuffer, 1, HAL_MAX_DELAY);
+	if(pCtrl->status != HAL_OK){
+		printf("FAILED sending FIFO_BURST_READ byte | Error: %s\n", stat2Str(pCtrl->status));
+	} else {
+		pCtrl -> status = HAL_SPI_Receive(pCtrl->pSPIHandle, pCtrl->pictureBuffer, pCtrl->pictureBufferSize, HAL_MAX_DELAY); //Read bytes into pictureBuffer
+		if(pCtrl->status != HAL_OK){
+			printf("FAILED receiving picture data from SPI bus | Error: %s\n", stat2Str(pCtrl->status));
+		}
+	}
+
+	cam_disable(pCtrl);
+	return pCtrl->pictureBufferSize;
+}
+
+//How we find the number of bytes the FIFO is holding (for burst reading)
+uint32_t getFIFOLength(ArducamController *pCtrl){
+	uint8_t buf = 0x02;
+	uint32_t reg0;
+	uint32_t reg1;
+	uint32_t reg2;
+	uint32_t fifoLength = 0;
+
+	reg0 = spiRegRead(pCtrl, FIFO_BYTE0, &buf, sizeof(uint8_t));
+	reg1 = spiRegRead(pCtrl, FIFO_BYTE1, &buf, sizeof(uint8_t));
+	reg2 = spiRegRead(pCtrl, FIFO_BYTE2, &buf, sizeof(uint8_t));
+	reg2 = reg2 & 0x7F;
+	uint32_t longReg0 = (uint32_t) reg0;
+	uint32_t longReg1 = (uint32_t) reg1;
+	uint32_t longReg2 = (uint32_t) reg2;
+
+	fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+	//fifoLength = ((reg2 << 16) | (reg1 << 8) | reg0) & 0x007FFFFF;
+	printf("FIFO Length : %luKB\n", fifoLength/1024);
+	return fifoLength;
+}
+
+//Clears the picture buffer
+//Sets all bytes to 0xFF
+void clearPicBuf(ArducamController* pCtrl){
+	for(int i = 0; i < MAX_PIC_BUF_SIZE; i++){
+		pCtrl->pictureBuffer[i] = 0xFF;
+	}
 }
 
 void setDefaultSettings(ArducamController* pCtrl){
@@ -174,7 +229,7 @@ void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData, uint16_t
 	cam_disable(pCtrl);
 }
 
-void spiRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_t size){
+uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_t size){
 	cam_enable(pCtrl);
 	HAL_Delay(CS_DELAY);
 	uint8_t maskedAddr = reg & SPI_READ_MASK; // a 0 followed by register to read
@@ -183,10 +238,10 @@ void spiRegRead(ArducamController* pCtrl, uint8_t reg, uint8_t *pBuffer, uint16_
 	pCtrl->status = HAL_SPI_TransmitReceive(pCtrl->pSPIHandle, &dummyByte, pBuffer, size, CAM_TIMEOUT);
 	cam_disable(pCtrl);
 	printf("(SPI) Read 0x%02X from 0x%02X\n", *pBuffer, reg);
+	return *pBuffer;
 }
 
 //Returns FIFO 'finished' flag. 0 -> FIFO is busy, 1 -> capture is finished
-
 int isFIFOReady(ArducamController* pCtrl){
 	uint8_t registerData = 0;
 	spiRegRead(pCtrl, FIFO_STATUS_REG, &registerData, 1);
@@ -221,10 +276,7 @@ void resetCPLD(ArducamController* pCtrl){
 
 
 void flushFIFO(ArducamController* pCtrl){
-	printf("Flushing FIFO\n");
 	clearFIFOFlag(pCtrl);
-	//printf("Reseting FIFO Pointers\n");
-	//resetFIFOPointers(pCtrl);
 }
 
 void clearFIFOFlag(ArducamController* pCtrl){
@@ -249,27 +301,18 @@ void setNCaptureFrames(ArducamController* pCtrl, int n){
 	spiRegWrite(pCtrl, CAPTURE_CONTROL_REG, &cmd, 1);
 }
 
-//How we find the number of bytes the FIFO is holding (for burst reading)
-uint32_t getFIFOLength(ArducamController *pCtrl){
-	uint32_t reg0, reg1, reg2 = 0;
-	uint32_t fifoLength = 0;
-
-	spiRegRead(pCtrl, FIFO_BYTE0, (uint8_t*) &reg0, 1);
-	spiRegRead(pCtrl, FIFO_BYTE1, (uint8_t*) &reg1, 1);
-	spiRegRead(pCtrl, FIFO_BYTE2, (uint8_t*) &reg2, 1);
-	reg2 = reg2 & 0x7F;
-
-	fifoLength = ((reg2 << 16) | (reg1 << 8) | reg0) & 0x007FFFFF;
-	printf("FIFO Length : %lu\n", fifoLength);
-	return fifoLength;
-}
-
 void cam_enable(ArducamController* pCtrl){
 	HAL_GPIO_WritePin(pCtrl->pCSPort, pCtrl->csPinNo, GPIO_PIN_RESET);
 }
 
 void cam_disable(ArducamController* pCtrl){
 	HAL_GPIO_WritePin(pCtrl->pCSPort, pCtrl->csPinNo, GPIO_PIN_SET);
+}
+
+void shutter(ArducamController* pCtrl){
+	flashOn(pCtrl);
+	HAL_Delay(SHUTTER_DELAY);
+	flashOff(pCtrl);
 }
 
 void flashOn(ArducamController* pCtrl){
@@ -322,11 +365,96 @@ void registerDump(ArducamController* pCtrl){
 
 }
 
-void printStatus(ArducamController* pCtrl){
-	printf("**********Status Report**********\n");
-	registerDump(pCtrl);
-	printf("Arducam Status: %x\n", pCtrl->status);
-	printf("*******************************\n");
+const char BASE64LOOKUPTABLE[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
+//Fills the base64 buffer
+void picToBase64(ArducamController* pCtrl){
+  printf("Converting data to Base64...\n");
+
+  uint8_t *inputBytes = pCtrl->pictureBuffer;
+  int nBytes = pCtrl->pictureBufferSize;
+
+  char *output = pCtrl->base64Buffer;
+
+  uint32_t byte0, byte1, byte2;
+  uint8_t base64Digit0, base64Digit1, base64Digit2, base64Digit3;
+  uint8_t tableIdx0, tableIdx1, tableIdx2, tableIdx3;
+  uint32_t threeByteCombo;
+
+  int inputIdx = 0;
+  int outputIdx = 0;
+  while(inputIdx < nBytes-2){
+    byte0 = inputBytes[inputIdx];
+    byte1 = inputBytes[inputIdx+1];
+    byte2 = inputBytes[inputIdx+2];
+    threeByteCombo = ((byte0 << 16) | (byte1 << 8) | byte2); // 24 bits
+
+    // Turn every 6 bits into a Base64 digit
+    tableIdx0 = (threeByteCombo >> 18);
+    tableIdx1 = (threeByteCombo >> 12) & 0x3F;
+    tableIdx2 = (threeByteCombo >> 6) & 0x3F;
+    tableIdx3 = threeByteCombo & 0x3F;
+
+    base64Digit0 = BASE64LOOKUPTABLE[tableIdx0];
+    base64Digit1 = BASE64LOOKUPTABLE[tableIdx1];
+    base64Digit2 = BASE64LOOKUPTABLE[tableIdx2];
+    base64Digit3 = BASE64LOOKUPTABLE[tableIdx3];
+
+    output[outputIdx] = (char) base64Digit0;
+    output[outputIdx + 1] = (char) base64Digit1;
+    output[outputIdx + 2] = (char) base64Digit2;
+    output[outputIdx + 3] = (char) base64Digit3;
+
+    inputIdx += 3;
+    outputIdx += 4;
+  }
+
+  // Padding if necessary
+  if((nBytes-1)%3 == 2){
+
+    byte0 = inputBytes[nBytes-2];
+    byte1 = inputBytes[nBytes-1];
+    byte2 = 0; //Will need to pad here
+    threeByteCombo = ((byte0 << 16) | (byte1 << 8) | byte2); // 24 bits
+
+    // Turn every 6 bits into a Base64 digit
+    tableIdx0 = (threeByteCombo >> 18);
+    tableIdx1 = (threeByteCombo >> 12) & 0x3F;
+    tableIdx2 = (threeByteCombo >> 6) & 0x3F;
+    tableIdx3 = threeByteCombo & 0x3F;
+
+    base64Digit0 = BASE64LOOKUPTABLE[tableIdx0];
+    base64Digit1 = BASE64LOOKUPTABLE[tableIdx1];
+    base64Digit2 = BASE64LOOKUPTABLE[tableIdx2];
+    base64Digit3 = '=';
+
+    output[outputIdx] = (char) base64Digit0;
+	output[outputIdx + 1] = (char) base64Digit1;
+	output[outputIdx + 2] = (char) base64Digit2;
+	output[outputIdx + 3] = (char) base64Digit3;
+  } else if ((nBytes-1)%3 == 1){
+    byte0 = inputBytes[nBytes-1];
+    byte1 = 0; //Will need to pad here
+    byte2 = 0;
+    threeByteCombo = ((byte0 << 16) | (byte1 << 8) | byte2); // 24 bits
+
+    // Turn every 6 bits into a Base64 digit
+    tableIdx0 = (threeByteCombo >> 18);
+    tableIdx1 = (threeByteCombo >> 12) & 0x3F;
+    tableIdx2 = (threeByteCombo >> 6) & 0x3F;
+    tableIdx3 = threeByteCombo & 0x3F;
+
+    base64Digit0 = BASE64LOOKUPTABLE[tableIdx0];
+    base64Digit1 = BASE64LOOKUPTABLE[tableIdx1];
+    base64Digit2 = '=';
+    base64Digit3 = '=';
+
+    output[outputIdx] = (char) base64Digit0;
+	output[outputIdx + 1] = (char) base64Digit1;
+	output[outputIdx + 2] = (char) base64Digit2;
+	output[outputIdx + 3] = (char) base64Digit3;
+  }
+
+  printf("Base 64 Data = %s\n", output);
 }
 

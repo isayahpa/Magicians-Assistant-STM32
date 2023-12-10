@@ -61,6 +61,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define LEFT_SERVO_PWM_Pin GPIO_PIN_0
+#define LEFT_SERVO_PWM_GPIO_Port GPIOA
+#define RIGHT_SERVO_PWM_Pin GPIO_PIN_1
+#define RIGHT_SERVO_PWM_GPIO_Port GPIOA
 #define SD_CS_Pin GPIO_PIN_1
 #define SD_CS_GPIO_Port GPIOB
 #define CAM_FLASH_Pin GPIO_PIN_6

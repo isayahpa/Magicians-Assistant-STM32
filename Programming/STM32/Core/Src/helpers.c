@@ -4,17 +4,11 @@
 #include "helpers.h"
 
 UART_HandleTypeDef *pHUART;
-I2C_HandleTypeDef *pHI2C;
 
-void initHelpers(UART_HandleTypeDef* pUHandle, I2C_HandleTypeDef *pIHandle){
+
+
+void initHelpers(UART_HandleTypeDef* pUHandle){
 	pHUART = pUHandle;
-	pHI2C = pIHandle;
-}
-
-//Returns the value of the bit at index in num
-//Ex: checkBit(0x05, 2) == 2
-int checkBit(uint8_t num, int index){
-	return (int) ((num >> index) & 0x01);
 }
 
 // Allows for printf() use
@@ -30,7 +24,14 @@ PUTCHAR_PROTOTYPE
   return ch;
 }
 
-void i2cScan(){
+//Returns the value of the bit at index in num
+//Ex: checkBit(0x05, 2) == 2
+int checkBit(uint32_t num, int index){
+	return (int) ((num >> index) & 0x01);
+}
+
+
+void i2cScan(I2C_HandleTypeDef *pHI2C){
 	HAL_StatusTypeDef ret;
 	// I2C Scan
 	for(int i = 0; i < 128; i++){
@@ -41,17 +42,29 @@ void i2cScan(){
 	}
 }
 
-char* statusToString(HAL_StatusTypeDef status){
+char* stat2Str(HAL_StatusTypeDef status){
 	switch(status){
 		case HAL_OK:
-			return "HAL_OK";
+			return "HAL_OK\0";
 		case HAL_ERROR:
-			return "HAL_ERROR";
+			return "HAL_ERROR\0";
 		case HAL_BUSY:
-			return "HAL_BUSY";
+			return "HAL_BUSY\0";
 		case HAL_TIMEOUT:
-			return "HAL_TIMEOUT";
+			return "HAL_TIMEOUT\0";
 		default:
-			return "UNKNOWN STATUS";
+			return "UNKNOWN STATUS\0";
 	}
 }
+
+// Trying to introduce a little polymorphism-ease
+typedef struct GenericController{
+	HAL_StatusTypeDef status;
+} GenericController;
+
+void printStatus(void* pCtrl){
+	HAL_StatusTypeDef status = ((GenericController*) pCtrl)->status;
+	printf("\t| Status : %s\n", stat2Str(status));
+}
+
+
