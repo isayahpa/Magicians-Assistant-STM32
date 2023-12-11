@@ -28,10 +28,10 @@ HAL_StatusTypeDef initSD(SDController* pCtrl){
 
 HAL_StatusTypeDef disconnectSD(SDController* pCtrl){
 	printf("Disconnecting SD Card...\n");
-	if(closeFile(pCtrl) && dismountFS(pCtrl) != HAL_OK){
-		printf("FAILED to close SD\n");
+	if(dismountFS(pCtrl) != HAL_OK){	//Took out closeFile() from here since it should be closed if(closeFile(pCtrl) && ...)
+		printf("FAILED Disconnecting SD\n");
 	} else {
-		printf("SUCCESS closing SD\n");
+		printf("SUCCESS SD Disconnected\n");
 	}
 
 	return pCtrl->status;

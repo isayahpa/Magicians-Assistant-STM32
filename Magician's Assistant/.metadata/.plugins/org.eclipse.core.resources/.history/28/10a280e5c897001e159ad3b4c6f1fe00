@@ -1,0 +1,40 @@
+#ifndef INC_SERVOCONTROLLER_H_
+#define INC_SERVOCONTROLLER_H_
+
+#include "stm32l4xx_hal.h"
+#include "helpers.h"
+
+#define MAX_NUM_SERVOS 5
+
+#define SERVO_DELAY 1000
+#define SERVO_POS_LEFT 0
+#define SERVO_POS_CENTER 90
+#define SERVO_POS_RIGHT 180
+
+#define DECK_SIZE 100 // Standard size of a Commander deck
+
+typedef struct Servo Servo;
+struct Servo {
+	char* name;
+	TIM_HandleTypeDef* pTIMHandle;
+	uint32_t channel;
+};
+
+typedef struct ServoController ServoController;
+struct ServoController{
+	HAL_StatusTypeDef status;
+	RNG_HandleTypeDef* pRNGHandle;
+	Servo servoList[MAX_NUM_SERVOS];
+	int numServos;
+};
+
+//Initializers
+HAL_StatusTypeDef initServoController(ServoController* pCtrl);
+HAL_StatusTypeDef disconnectServos(ServoController* pCtrl);
+HAL_StatusTypeDef resetAllServos(ServoController *pCtrl);
+void addServo(ServoController *pCtrl, Servo servo);
+void setServoPosition(Servo servo, int position);
+void sweepServos(ServoController* pCtrl);
+HAL_StatusTypeDef shuffle(ServoController* pCtrl, int numCards);
+void drawCard(ServoController *pCtrl, int pile);
+#endif /* INC_SERVOCONTROLLER_H_ */

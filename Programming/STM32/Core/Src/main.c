@@ -85,12 +85,12 @@ static void MX_RNG_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-/*void fullStatusReport(ArducamController* pArducam, WiFiController* pESP, ServoController* pServoController, SDController* pSDController){
+void fullStatusReport(ArducamController* pArducam, WiFiController* pESP, ServoController* pServoController, SDController* pSDController){
 	if(!pArducam){ printf("Null Arducam Pointer!\n");} else {printf("Arducam Status : %s\n", stat2Str(pArducam->status));}
 	if(!pESP){ printf("Null WiFiController Pointer!\n"); } else {printf("ESP Status : %s\n", stat2Str(pESP->status));}
 	if(!pServoController){ printf("Null ServoController Pointer!\n"); } else {printf("Servo Status : %s\n", stat2Str(pServoController->status));}
 	if(!pSDController){ printf("Null SDController Pointer!\n"); } else {printf("SD Status : %s\n", stat2Str(pSDController->status));}
-}*/
+}
 
 /* USER CODE END 0 */
 
@@ -144,17 +144,12 @@ int main(void)
   addServo(&servoController, leftServo);
   addServo(&servoController, rightServo);
 
-  /*while(1){
-	 sweepServos(&servoController);
-  }*/
-
   ArducamController arducam = {.status = HAL_OK, .pI2CHandle = &hi2c1, .pSPIHandle = &hspi1, .pCSPort = CAM_CS_GPIO_Port, .csPinNo = CAM_CS_Pin, .pFlashPort = CAM_FLASH_GPIO_Port, .flashPinNo = CAM_FLASH_Pin};
   initArducam(&arducam);
-  flashOn(&arducam);
 
-  WiFiController esp32 = {.status = HAL_OK, .pUARTHandle = &huart1, .pGPIOPort = READY_FLAG_GPIO_Port, .readyFlagPin = READY_FLAG_Pin};
+  WiFiController esp = {.status = HAL_OK, .pUARTHandle = &huart1, .pGPIOPort = READY_FLAG_GPIO_Port, .readyFlagPin = READY_FLAG_Pin};
   char pCMDBuffer[] = "CMDBUFFR";
-  initESP(&esp32);
+  initESP(&esp);
 
   SDController sd = {.status = HAL_OK, .pSPIHandle = &hspi2, .pCSPort = SD_CS_GPIO_Port, .csPin = SD_CS_Pin};
   char* filename = "image.jpg";
@@ -164,11 +159,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  clearCMDBuffer(&esp32); //Clear out any old commands that may have come in while Assistant wasn't looking
-  while (esp32.status == HAL_OK) // Might add the other Controllers here if needed
+  clearCMDBuffer(&esp); //Clear out any old commands that may have come in while Assistant wasn't looking
+  while (esp.status == HAL_OK) // Might add the other Controllers here if needed
   {// Continuously look for commands on ESP_RX, as long as ESP is working
 
-	if(getNextCMD(&esp32, pCMDBuffer) == HAL_OK){
+	if(getNextCMD(&esp, pCMDBuffer) == HAL_OK){
+		signalBusy(&esp);
 		if(strcmp(pCMDBuffer, LIGHTS_ON) == 0){ //Turn the Flash On
 			printf(STATUS_LIGHTS_ON);
 			flashOn(&arducam);
@@ -177,14 +173,16 @@ int main(void)
 			flashOff(&arducam);
 		} else if (strcmp(pCMDBuffer, SHUFFLE) == 0){ //Begin Shuffle Sequence
 			printf(STATUS_SHUFFLE);
-			shuffle(&servoController, DECK_SIZE);
+			if(shuffle(&servoController, DECK_SIZE) == HAL_OK){
+				printf("SUCCESS Shuffled Deck.\n");
+			}
 		} else if (strcmp(pCMDBuffer, SNAP) == 0){ //Take a Single Picture and Sends it to the ESP
 			printf(STATUS_SNAP);
 			if(singleCapture(&arducam) == HAL_OK){
 				if(writeFile(&sd, filename, arducam.pictureBuffer, arducam.pictureBufferSize) == HAL_OK){ //Saves JPG data to SD
 					printf("SUCCESS Saved Single Snap\n");
 					picToBase64(&arducam);
-					sendData(&esp32, arducam.base64Buffer, arducam.base64Size);
+					sendData(&esp, arducam.base64Buffer, arducam.base64Size);
 				}
 			}
 		} else if (strcmp(pCMDBuffer, ARCHIDEKT) == 0){
@@ -192,7 +190,7 @@ int main(void)
 			// Idea : Capture 100 photos, send each to ESP to go to curl for Image to Text API, then Receive Text, (display it?), send out to Archidekt
 			// Might be best to split into a "SCAN" cmd that scans a single card and prints the card name (at least for testing) and an "Archidekt" CMD
 			printf(STATUS_ARCHIDEKT);
-		}else if (strcmp(pCMDBuffer, SD_READ) == 0){ // Sends 1KB of the active SD file to ESP repeatedly
+		} else if (strcmp(pCMDBuffer, SD_READ) == 0){ // Sends 1KB of the active SD file to ESP repeatedly
 			/*printf(STATUS_SD_READ);
 			int transmissionSize = 1024;
 			int nChunks = arducam.pictureBufferSize / transmissionSize;
@@ -213,21 +211,21 @@ int main(void)
 		}
 	}
 
-	clearCMDBuffer(&esp32); // Flush again just to be sure the buffer is clear for the next command
-	signalReady(&esp32);
+	clearCMDBuffer(&esp); // Flush again just to be sure the buffer is clear for the next command
+	signalReady(&esp);
   }
 
   	printf("Exited Loop.\n");
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  	//fullStatusReport(&arducam, &esp32, &servoController, &sd); // Prints the statuses of every peripheral
+  	fullStatusReport(&arducam, &esp, &servoController, &sd); // Prints the statuses of every peripheral
 
   	// Clean up step
   	disconnectSD(&sd);
   	disconnectArducam(&arducam);
-  	//disconnectServos(&servoController);
-  	disconnectESP(&esp32);
+  	disconnectServos(&servoController);
+  	disconnectESP(&esp);
 
 	printf("Goodbye!\n");
   /* USER CODE END 3 */

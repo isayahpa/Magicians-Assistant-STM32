@@ -20,12 +20,16 @@ void initHelpers(UART_HandleTypeDef* pUHandle){
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(pHUART, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-  return ch;
+
+	HAL_UART_Transmit(pHUART, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+	if(ch == '\n'){
+		HAL_UART_Transmit(pHUART, (uint8_t *)"\r", 1, HAL_MAX_DELAY);
+	}
+	return ch;
 }
 
 //Returns the value of the bit at index in num
-//Ex: checkBit(0x05, 2) == 2
+//Ex: checkBit(0x05, 2) == 1
 int checkBit(uint32_t num, int index){
 	return (int) ((num >> index) & 0x01);
 }
@@ -64,7 +68,7 @@ typedef struct GenericController{
 
 void printStatus(void* pCtrl){
 	HAL_StatusTypeDef status = ((GenericController*) pCtrl)->status;
-	printf("\t| Status : %s\n", stat2Str(status));
+	printf("\t|^ Status : %s\n", stat2Str(status));
 }
 
 

@@ -47,6 +47,7 @@ bool showPreview = false;
 
 // Assign output variables to GPIO pins
 const int STM_READY_PIN = 21;
+const int LED_PIN = 2;
 
 // Current time
 unsigned long currentTime = millis();
@@ -61,6 +62,8 @@ void setup() {
   STMSerialPort.begin(115200); // Rx = 16 (Yellow), Tx (Blue) = 17
 
   pinMode(STM_READY_PIN, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+
   status = "Init";
   lightsOn = false;
   showPreview = false;
@@ -82,6 +85,12 @@ void setup() {
 }
 
 void loop(){
+  if(WiFi.status() == WL_CONNECTED){
+    digitalWrite(LED_PIN, HIGH);
+  } else {
+    digitalWrite(LED_PIN, LOW);
+  }
+
   WiFiClient client = server.available();   // Listen for incoming clients
 
   if (client) {                             // If a new client connects,
@@ -147,9 +156,7 @@ void loop(){
 
             //Preview the photo data when photos are sent
             if(showPreview){
-              client.println("<img src=\"data:image/jpg;base64, " + String(pictureDataBuffer) + "\" alt=\"Arducam Preview\"/>\n");
-              //filename = "image.jpg";
-              //showPreviewInClient(filename, client);
+              showPreviewInClient(client);
             }
 
             client.println("<p>Status: " + status + "</p>");
@@ -194,7 +201,9 @@ void sendCMD(String cmd){
     return; // Return on timeout so that the client can still get updated
   }
 
-  Serial.println("STM Completed. Updating ESP State");
+  int nBytesToRead = STMSerialPort.available();
+  Serial.println("STM Completed - Received " + String(nBytesToRead) + " bytes of data");
+  Serial.println("Updating ESP State");
   // On a successful wait, update state variables
   if(cmd == LIGHTS_ON){
     status = STATUS_LIGHTS_ON;
@@ -207,16 +216,7 @@ void sendCMD(String cmd){
   } else if (cmd == SNAP){
     status = STATUS_SNAP;
     showPreview = true;
-    //showPreviewInClient(String filename, WiFiClient client)
-    int nBytesToRead = STMSerialPort.available();
-    readFromSTM(nBytesToRead);
-    pictureDataBuffer = hexToBase64(&(dataBuffer[0]), nBytesToRead);
   } else if (cmd == SD_READ){
-    /*while(1){
-      int nBytes = STMSerialPort.available();
-      readFromSTM(nBytes);
-
-    }*/
   } else if (cmd == ARCHIDEKT){
     status = STATUS_ARCHIDEKT;
     int nBytesToRead = STMSerialPort.available();
@@ -241,34 +241,25 @@ bool waitForSTM(){
   return true;
 }
 
-/*void showPreviewInClient(String filename, WiFiClient client){
-  if(!SD.begin(SD_CS)){
-      Serial.println("FAILED to init SD card");
-      showPreview = false;
-      return;
+void showPreviewInClient(WiFiClient client){
+  Serial.println("Reading Base64 Picture Data...");
+  //if(client){
+    int c;
+
+    client.print("<img src=\"data:image/jpg;base64, ");
+    Serial.print("<img src=\"data:image/jpg;base64, ");
+    while(STMSerialPort.available() > 0){
+      c = STMSerialPort.read();
+      client.print((char)c);
+      Serial.print((char)c);
     }
-  if(!SD.exists(filename)){
-    Serial.println("FAILED to find file '" + filename + "'");
-    showPreview = false;
-    return;
-  }
-
-  client.print("<img src=\"data:image/jpg;base64, ");
-
-  //Read 3 bytes -> convert to Base64 -> Print the 4 bytes to client
-  char* readBuf = "";
-  String b64Out = "";
-  photoFile = SD.open(filename, FILE_READ);
-
-  while(photoFile.available()){
-    photoFile.readBytes(readBuf, 3);
-    b64Out = hexToBase64(readBuf, 3);
-    client.printf("%s", b64Out);
-  }
-  client.print("\" alt=\"Arducam Preview\"/>\n");
-
-  SD.end();
-}*/
+    client.print("\" alt=\"Arducam Preview\"/>\n");
+    Serial.print("\" alt=\"Arducam Preview\"/>\n");
+  //} else {
+    //Serial.println("FAILED Show Preview in Client. Client was NULL.");
+  //}
+  
+}
 
 void readFromSTM(int nBytes){
   //dataBuffer = ;

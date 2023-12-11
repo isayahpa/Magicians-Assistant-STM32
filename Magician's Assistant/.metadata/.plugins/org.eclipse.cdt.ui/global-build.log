@@ -1,0 +1,1240 @@
+18:30:59 **** Clean-only build of configuration Debug for project MagiciansAssistant ****
+make -j4 clean 
+rm -rf ./Middlewares/Third_Party/FatFs/src/option/syscall.cyclo ./Middlewares/Third_Party/FatFs/src/option/syscall.d ./Middlewares/Third_Party/FatFs/src/option/syscall.o ./Middlewares/Third_Party/FatFs/src/option/syscall.su
+rm -rf ./Middlewares/Third_Party/FatFs/src/diskio.cyclo ./Middlewares/Third_Party/FatFs/src/diskio.d ./Middlewares/Third_Party/FatFs/src/diskio.o ./Middlewares/Third_Party/FatFs/src/diskio.su ./Middlewares/Third_Party/FatFs/src/ff.cyclo ./Middlewares/Third_Party/FatFs/src/ff.d ./Middlewares/Third_Party/FatFs/src/ff.o ./Middlewares/Third_Party/FatFs/src/ff.su ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.cyclo ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.d ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.su
+rm -rf ./FATFS/Target/user_diskio.cyclo ./FATFS/Target/user_diskio.d ./FATFS/Target/user_diskio.o ./FATFS/Target/user_diskio.su ./FATFS/Target/user_diskio_spi.cyclo ./FATFS/Target/user_diskio_spi.d ./FATFS/Target/user_diskio_spi.o ./FATFS/Target/user_diskio_spi.su
+rm -rf ./FATFS/App/fatfs.cyclo ./FATFS/App/fatfs.d ./FATFS/App/fatfs.o ./FATFS/App/fatfs.su
+rm -rf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.su
+rm -rf ./Core/Startup/startup_stm32l476rgtx.d ./Core/Startup/startup_stm32l476rgtx.o
+rm -rf ./Core/Src/ArducamController.cyclo ./Core/Src/ArducamController.d ./Core/Src/ArducamController.o ./Core/Src/ArducamController.su ./Core/Src/SDController.cyclo ./Core/Src/SDController.d ./Core/Src/SDController.o ./Core/Src/SDController.su ./Core/Src/ServoController.cyclo ./Core/Src/ServoController.d ./Core/Src/ServoController.o ./Core/Src/ServoController.su ./Core/Src/WiFiController.cyclo ./Core/Src/WiFiController.d ./Core/Src/WiFiController.o ./Core/Src/WiFiController.su ./Core/Src/helpers.cyclo ./Core/Src/helpers.d ./Core/Src/helpers.o ./Core/Src/helpers.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32l4xx_hal_msp.cyclo ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_msp.su ./Core/Src/stm32l4xx_it.cyclo ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/stm32l4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l4xx.cyclo ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o ./Core/Src/system_stm32l4xx.su
+rm -rf MagiciansAssistant.elf MagiciansAssistant.list MagiciansAssistant.map default.size.stdout
+ 
+18:31:01 **** Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Middlewares/Third_Party/FatFs/src/option/syscall.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/FatFs/src/option/syscall.d" -MT"Middlewares/Third_Party/FatFs/src/option/syscall.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/FatFs/src/option/syscall.o"
+arm-none-eabi-gcc "../Middlewares/Third_Party/FatFs/src/diskio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/FatFs/src/diskio.d" -MT"Middlewares/Third_Party/FatFs/src/diskio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/FatFs/src/diskio.o"
+arm-none-eabi-gcc "../Middlewares/Third_Party/FatFs/src/ff.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/FatFs/src/ff.d" -MT"Middlewares/Third_Party/FatFs/src/ff.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/FatFs/src/ff.o"
+arm-none-eabi-gcc "../Middlewares/Third_Party/FatFs/src/ff_gen_drv.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/FatFs/src/ff_gen_drv.d" -MT"Middlewares/Third_Party/FatFs/src/ff_gen_drv.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/FatFs/src/ff_gen_drv.o"
+arm-none-eabi-gcc "../FATFS/Target/user_diskio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FATFS/Target/user_diskio.d" -MT"FATFS/Target/user_diskio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "FATFS/Target/user_diskio.o"
+arm-none-eabi-gcc "../FATFS/Target/user_diskio_spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FATFS/Target/user_diskio_spi.d" -MT"FATFS/Target/user_diskio_spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "FATFS/Target/user_diskio_spi.o"
+arm-none-eabi-gcc "../FATFS/App/fatfs.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FATFS/App/fatfs.d" -MT"FATFS/App/fatfs.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "FATFS/App/fatfs.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o"
+../FATFS/Target/user_diskio_spi.c: In function 'xmit_spi_multi':
+../FATFS/Target/user_diskio_spi.c:135:42: warning: passing argument 2 of 'HAL_SPI_Transmit' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  135 |         HAL_SPI_Transmit(&SD_SPI_HANDLE, buff, btx, HAL_MAX_DELAY);
+      |                                          ^~~~
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:430,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../FATFS/Target/user_diskio_spi.c:27:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h:792:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'const BYTE *' {aka 'const unsigned char *'}
+  792 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                             ~~~~~~~~~^~~~~
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rng.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o"
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32l476rgtx.d" -MT"Core/Startup/startup_stm32l476rgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32l476rgtx.o" "../Core/Startup/startup_stm32l476rgtx.s"
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/SDController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/SDController.d" -MT"Core/Src/SDController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/SDController.o"
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/WiFiController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/WiFiController.d" -MT"Core/Src/WiFiController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/WiFiController.o"
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32l4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32l4xx.d" -MT"Core/Src/system_stm32l4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32l4xx.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34512	    136	   2672	  37320	   91c8	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+20:56:12 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/SDController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/SDController.d" -MT"Core/Src/SDController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/SDController.o"
+../Core/Src/SDController.c: In function 'readFile':
+../Core/Src/SDController.c:94:25: warning: passing argument 2 of 'openFile' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   94 |         openFile(pCtrl, (const char*) filename, FA_READ);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/SDController.c:79:55: note: expected 'char *' but argument is of type 'const char *'
+   79 | HAL_StatusTypeDef openFile(SDController* pCtrl, char* filename, BYTE perms){
+      |                                                 ~~~~~~^~~~~~~~
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34512	    136	   2672	  37320	   91c8	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+20:57:13 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/SDController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/SDController.d" -MT"Core/Src/SDController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/SDController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34512	    136	   2672	  37320	   91c8	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+20:57:27 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  34512	    136	   2672	  37320	   91c8	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+20:59:22 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34448	    136	   2672	  37256	   9188	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+21:00:34 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  34448	    136	   2672	  37256	   9188	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+21:13:53 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34448	    136	   2672	  37256	   9188	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+21:31:39 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32l476rgtx.d" -MT"Core/Startup/startup_stm32l476rgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32l476rgtx.o" "../Core/Startup/startup_stm32l476rgtx.s"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34448	    136	   2672	  37256	   9188	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+21:41:16 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  34456	    136	   2672	  37264	   9190	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+00:16:35 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ServoController.c: In function 'addServo':
+../Core/Src/ServoController.c:23:1: error: wrong type argument to increment
+   23 | ++
+      | ^~
+make: *** [Core/Src/subdir.mk:49: Core/Src/ServoController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+00:47:56 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55220	    164	   3836	  59220	   e754	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+01:14:25 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55220	    164	   3836	  59220	   e754	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+01:21:44 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  55220	    164	   3836	  59220	   e754	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+01:30:52 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55272	    164	   3836	  59272	   e788	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+01:36:54 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55260	    164	   3836	  59260	   e77c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+01:55:27 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ArducamController.c: In function 'getFIFOLength':
+../Core/Src/ArducamController.c:126:27: error: too many arguments to function 'spiRegRead'
+  126 |         reg0 = (uint32_t) spiRegRead(pCtrl, FIFO_BYTE0, &buf, sizeof(uint8_t));
+      |                           ^~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:87:9: note: declared here
+   87 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:127:16: error: too many arguments to function 'spiRegRead'
+  127 |         reg1 = spiRegRead(pCtrl, FIFO_BYTE1, &buf, sizeof(uint8_t));
+      |                ^~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:87:9: note: declared here
+   87 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:128:16: error: too many arguments to function 'spiRegRead'
+  128 |         reg2 = spiRegRead(pCtrl, FIFO_BYTE2, &buf, sizeof(uint8_t));
+      |                ^~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:87:9: note: declared here
+   87 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'setDefaultSettings':
+../Core/Src/ArducamController.c:167:9: error: too many arguments to function 'spiRegWrite'
+  167 |         spiRegWrite(pCtrl, (uint8_t)0x03, &data, 1);
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:86:6: note: declared here
+   86 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'isSPIWorking':
+../Core/Src/ArducamController.c:175:9: error: too many arguments to function 'spiRegWrite'
+  175 |         spiRegWrite(pCtrl, 0x00, &testVal, 1);
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:86:6: note: declared here
+   86 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:176:9: error: too many arguments to function 'spiRegRead'
+  176 |         spiRegRead(pCtrl, 0x00, &readVal, 1);
+      |         ^~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:87:9: note: declared here
+   87 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'spiRegWrite':
+../Core/Src/ArducamController.c:225:74: error: invalid use of void expression
+  225 |                 printf("FAILED Sending SPI_READ_MASK | Status : %s\n\r", printStatus(pCtrl));
+      |                                                                          ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c:226:24: warning: 'return' with a value, in function returning void [-Wreturn-type]
+  226 |                 return 0x00;
+      |                        ^~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:230:80: error: invalid use of void expression
+  230 |                 printf("FAILED Writing SPI Reg 0x%02X | Status : %s\n\r", reg, printStatus(pCtrl));
+      |                                                                                ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c:231:24: warning: 'return' with a value, in function returning void [-Wreturn-type]
+  231 |                 return 0x00;
+      |                        ^~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'spiRegRead':
+../Core/Src/ArducamController.c:244:74: error: invalid use of void expression
+  244 |                 printf("FAILED Sending SPI_READ_MASK | Status : %s\n\r", printStatus(pCtrl));
+      |                                                                          ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c:249:80: error: invalid use of void expression
+  249 |                 printf("FAILED Reading SPI Reg 0x%02X | Status : %s\n\r", reg, printStatus(pCtrl));
+      |                                                                                ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'isFIFOReady':
+../Core/Src/ArducamController.c:260:9: error: too many arguments to function 'spiRegRead'
+  260 |         spiRegRead(pCtrl, FIFO_STATUS_REG, &registerData, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'singleRead':
+../Core/Src/ArducamController.c:273:17: error: too many arguments to function 'spiRegRead'
+  273 |                 spiRegRead(pCtrl, FIFO_BYTE0, &buffer[2], 1);
+      |                 ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:274:17: error: too many arguments to function 'spiRegRead'
+  274 |                 spiRegRead(pCtrl, FIFO_BYTE1, &buffer[1], 1);
+      |                 ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:275:17: error: too many arguments to function 'spiRegRead'
+  275 |                 spiRegRead(pCtrl, FIFO_BYTE2, &buffer[0], 1);
+      |                 ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'resetCPLD':
+../Core/Src/ArducamController.c:283:9: error: too many arguments to function 'spiRegWrite'
+  283 |         spiRegWrite(pCtrl, 0x07, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:286:9: error: too many arguments to function 'spiRegWrite'
+  286 |         spiRegWrite(pCtrl, 0x07, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'clearFIFOFlag':
+../Core/Src/ArducamController.c:297:9: error: too many arguments to function 'spiRegWrite'
+  297 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'resetFIFOPointers':
+../Core/Src/ArducamController.c:302:9: error: too many arguments to function 'spiRegWrite'
+  302 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'setCaptureFlag':
+../Core/Src/ArducamController.c:307:9: error: too many arguments to function 'spiRegWrite'
+  307 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'setNCaptureFrames':
+../Core/Src/ArducamController.c:314:9: error: too many arguments to function 'spiRegWrite'
+  314 |         spiRegWrite(pCtrl, CAPTURE_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:217:6: note: declared here
+  217 | void spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t *pData){
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'registerDump':
+../Core/Src/ArducamController.c:362:9: error: too many arguments to function 'spiRegRead'
+  362 |         spiRegRead(pCtrl, TEST_REGISTER, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:364:9: error: too many arguments to function 'spiRegRead'
+  364 |         spiRegRead(pCtrl, CAPTURE_CONTROL_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:366:9: error: too many arguments to function 'spiRegRead'
+  366 |         spiRegRead(pCtrl, FIFO_CONTROL_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:368:9: error: too many arguments to function 'spiRegRead'
+  368 |         spiRegRead(pCtrl, CHIP_VERSION_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:370:9: error: too many arguments to function 'spiRegRead'
+  370 |         spiRegRead(pCtrl, FIFO_STATUS_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:372:9: error: too many arguments to function 'spiRegRead'
+  372 |         spiRegRead(pCtrl, FIFO_BYTE0, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:374:9: error: too many arguments to function 'spiRegRead'
+  374 |         spiRegRead(pCtrl, FIFO_BYTE1, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:376:9: error: too many arguments to function 'spiRegRead'
+  376 |         spiRegRead(pCtrl, FIFO_BYTE2, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:236:9: note: declared here
+  236 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+02:07:49 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ArducamController.c: In function 'getFIFOLength':
+../Core/Src/ArducamController.c:130:24: error: 'longReg2' undeclared (first use in this function)
+  130 |         fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+      |                        ^~~~~~~~
+../Core/Src/ArducamController.c:130:24: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ArducamController.c:130:43: error: 'longReg1' undeclared (first use in this function)
+  130 |         fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+      |                                           ^~~~~~~~
+../Core/Src/ArducamController.c:130:60: error: 'longReg0' undeclared (first use in this function)
+  130 |         fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+      |                                                            ^~~~~~~~
+../Core/Src/ArducamController.c:123:18: warning: variable 'reg2' set but not used [-Wunused-but-set-variable]
+  123 |         uint32_t reg2;
+      |                  ^~~~
+../Core/Src/ArducamController.c:122:18: warning: variable 'reg1' set but not used [-Wunused-but-set-variable]
+  122 |         uint32_t reg1;
+      |                  ^~~~
+../Core/Src/ArducamController.c:121:18: warning: variable 'reg0' set but not used [-Wunused-but-set-variable]
+  121 |         uint32_t reg0;
+      |                  ^~~~
+../Core/Src/ArducamController.c:120:17: warning: unused variable 'buf' [-Wunused-variable]
+  120 |         uint8_t buf = 0x02;
+      |                 ^~~
+../Core/Src/ArducamController.c: In function 'spiRegWrite':
+../Core/Src/ArducamController.c:223:74: error: invalid use of void expression
+  223 |                 printf("FAILED Sending SPI_READ_MASK | Status : %s\n\r", printStatus(pCtrl));
+      |                                                                          ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c:226:61: error: 'pData' undeclared (first use in this function)
+  226 |         pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, pData, 1, CAM_TIMEOUT);
+      |                                                             ^~~~~
+../Core/Src/ArducamController.c:228:80: error: invalid use of void expression
+  228 |                 printf("FAILED Writing SPI Reg 0x%02X | Status : %s\n\r", reg, printStatus(pCtrl));
+      |                                                                                ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'spiRegRead':
+../Core/Src/ArducamController.c:243:74: error: invalid use of void expression
+  243 |                 printf("FAILED Sending SPI_READ_MASK | Status : %s\n\r", printStatus(pCtrl));
+      |                                                                          ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c:248:80: error: invalid use of void expression
+  248 |                 printf("FAILED Reading SPI Reg 0x%02X | Status : %s\n\r", reg, printStatus(pCtrl));
+      |                                                                                ^~~~~~~~~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'isFIFOReady':
+../Core/Src/ArducamController.c:259:9: error: too many arguments to function 'spiRegRead'
+  259 |         spiRegRead(pCtrl, FIFO_STATUS_REG, &registerData, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'singleRead':
+../Core/Src/ArducamController.c:272:17: error: too many arguments to function 'spiRegRead'
+  272 |                 spiRegRead(pCtrl, FIFO_BYTE0, &buffer[2], 1);
+      |                 ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:273:17: error: too many arguments to function 'spiRegRead'
+  273 |                 spiRegRead(pCtrl, FIFO_BYTE1, &buffer[1], 1);
+      |                 ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:274:17: error: too many arguments to function 'spiRegRead'
+  274 |                 spiRegRead(pCtrl, FIFO_BYTE2, &buffer[0], 1);
+      |                 ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'resetCPLD':
+../Core/Src/ArducamController.c:282:34: warning: passing argument 3 of 'spiRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  282 |         spiRegWrite(pCtrl, 0x07, &cmd, 1);
+      |                                  ^~~~
+      |                                  |
+      |                                  uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:215:78: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                                      ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:282:9: error: too many arguments to function 'spiRegWrite'
+  282 |         spiRegWrite(pCtrl, 0x07, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:215:19: note: declared here
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                   ^~~~~~~~~~~
+../Core/Src/ArducamController.c:285:34: warning: passing argument 3 of 'spiRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  285 |         spiRegWrite(pCtrl, 0x07, &cmd, 1);
+      |                                  ^~~~
+      |                                  |
+      |                                  uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:215:78: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                                      ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:285:9: error: too many arguments to function 'spiRegWrite'
+  285 |         spiRegWrite(pCtrl, 0x07, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:215:19: note: declared here
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                   ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'clearFIFOFlag':
+../Core/Src/ArducamController.c:296:46: warning: passing argument 3 of 'spiRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  296 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |                                              ^~~~
+      |                                              |
+      |                                              uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:215:78: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                                      ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:296:9: error: too many arguments to function 'spiRegWrite'
+  296 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:215:19: note: declared here
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                   ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'resetFIFOPointers':
+../Core/Src/ArducamController.c:301:46: warning: passing argument 3 of 'spiRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  301 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |                                              ^~~~
+      |                                              |
+      |                                              uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:215:78: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                                      ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:301:9: error: too many arguments to function 'spiRegWrite'
+  301 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:215:19: note: declared here
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                   ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'setCaptureFlag':
+../Core/Src/ArducamController.c:306:46: warning: passing argument 3 of 'spiRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  306 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |                                              ^~~~
+      |                                              |
+      |                                              uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:215:78: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                                      ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:306:9: error: too many arguments to function 'spiRegWrite'
+  306 |         spiRegWrite(pCtrl, FIFO_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:215:19: note: declared here
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                   ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'setNCaptureFrames':
+../Core/Src/ArducamController.c:313:49: warning: passing argument 3 of 'spiRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  313 |         spiRegWrite(pCtrl, CAPTURE_CONTROL_REG, &cmd, 1);
+      |                                                 ^~~~
+      |                                                 |
+      |                                                 uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:215:78: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                                      ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:313:9: error: too many arguments to function 'spiRegWrite'
+  313 |         spiRegWrite(pCtrl, CAPTURE_CONTROL_REG, &cmd, 1);
+      |         ^~~~~~~~~~~
+../Core/Src/ArducamController.c:215:19: note: declared here
+  215 | HAL_StatusTypeDef spiRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                   ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'registerDump':
+../Core/Src/ArducamController.c:361:9: error: too many arguments to function 'spiRegRead'
+  361 |         spiRegRead(pCtrl, TEST_REGISTER, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:363:9: error: too many arguments to function 'spiRegRead'
+  363 |         spiRegRead(pCtrl, CAPTURE_CONTROL_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:365:9: error: too many arguments to function 'spiRegRead'
+  365 |         spiRegRead(pCtrl, FIFO_CONTROL_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:367:9: error: too many arguments to function 'spiRegRead'
+  367 |         spiRegRead(pCtrl, CHIP_VERSION_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:369:9: error: too many arguments to function 'spiRegRead'
+  369 |         spiRegRead(pCtrl, FIFO_STATUS_REG, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:371:9: error: too many arguments to function 'spiRegRead'
+  371 |         spiRegRead(pCtrl, FIFO_BYTE0, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:373:9: error: too many arguments to function 'spiRegRead'
+  373 |         spiRegRead(pCtrl, FIFO_BYTE1, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:375:9: error: too many arguments to function 'spiRegRead'
+  375 |         spiRegRead(pCtrl, FIFO_BYTE2, &data, 1);
+      |         ^~~~~~~~~~
+../Core/Src/ArducamController.c:235:9: note: declared here
+  235 | uint8_t spiRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+02:19:28 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ArducamController.c: In function 'getFIFOLength':
+../Core/Src/ArducamController.c:130:24: error: 'longReg2' undeclared (first use in this function)
+  130 |         fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+      |                        ^~~~~~~~
+../Core/Src/ArducamController.c:130:24: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ArducamController.c:130:43: error: 'longReg1' undeclared (first use in this function)
+  130 |         fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+      |                                           ^~~~~~~~
+../Core/Src/ArducamController.c:130:60: error: 'longReg0' undeclared (first use in this function)
+  130 |         fifoLength = ((longReg2 << 16) | (longReg1 << 8) | longReg0) & 0x007FFFFF;
+      |                                                            ^~~~~~~~
+../Core/Src/ArducamController.c:123:18: warning: variable 'reg2' set but not used [-Wunused-but-set-variable]
+  123 |         uint32_t reg2;
+      |                  ^~~~
+../Core/Src/ArducamController.c:122:18: warning: variable 'reg1' set but not used [-Wunused-but-set-variable]
+  122 |         uint32_t reg1;
+      |                  ^~~~
+../Core/Src/ArducamController.c:121:18: warning: variable 'reg0' set but not used [-Wunused-but-set-variable]
+  121 |         uint32_t reg0;
+      |                  ^~~~
+../Core/Src/ArducamController.c:120:17: warning: unused variable 'buf' [-Wunused-variable]
+  120 |         uint8_t buf = 0x02;
+      |                 ^~~
+../Core/Src/ArducamController.c: In function 'spiRegWrite':
+../Core/Src/ArducamController.c:224:61: error: 'pData' undeclared (first use in this function)
+  224 |         pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, pData, 1, CAM_TIMEOUT);
+      |                                                             ^~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+02:20:31 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+../Core/Src/ArducamController.c: In function 'spiRegWrite':
+../Core/Src/ArducamController.c:223:61: error: 'pData' undeclared (first use in this function)
+  223 |         pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, pData, 1, CAM_TIMEOUT);
+      |                                                             ^~~~~
+../Core/Src/ArducamController.c:223:61: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+02:20:55 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+../Core/Src/ArducamController.c: In function 'spiRegWrite':
+../Core/Src/ArducamController.c:223:61: warning: passing argument 2 of 'HAL_SPI_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  223 |         pCtrl->status = HAL_SPI_Transmit(pCtrl->pSPIHandle, data, 1, CAM_TIMEOUT);
+      |                                                             ^~~~
+      |                                                             |
+      |                                                             uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:430,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/ArducamController.h:11,
+                 from ../Core/Src/ArducamController.c:2:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h:792:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  792 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                             ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55400	    164	   3836	  59400	   e808	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+02:21:33 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55400	    164	   3836	  59400	   e808	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+02:23:46 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55648	    164	   3836	  59648	   e900	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+02:32:07 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55648	    164	   3836	  59648	   e900	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+02:39:46 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/WiFiController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/WiFiController.d" -MT"Core/Src/WiFiController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/WiFiController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55660	    164	   3836	  59660	   e90c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+02:44:12 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55688	    164	   3836	  59688	   e928	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:09:03 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55676	    164	   3836	  59676	   e91c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:16:21 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+../Core/Src/ArducamController.c: In function 'isSPIWorking':
+../Core/Src/ArducamController.c:185:9: error: 'readVal' undeclared (first use in this function)
+  185 |         readVal = spiRegRead(pCtrl, TEST_REGISTER);
+      |         ^~~~~~~
+../Core/Src/ArducamController.c:185:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ArducamController.c:176:17: warning: unused variable 'newVal' [-Wunused-variable]
+  176 |         uint8_t newVal = 0x00;
+      |                 ^~~~~~
+../Core/Src/ArducamController.c:188:1: warning: control reaches end of non-void function [-Wreturn-type]
+  188 | }
+      | ^
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+03:16:42 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+../Core/Src/ArducamController.c: In function 'isSPIWorking':
+../Core/Src/ArducamController.c:185:17: error: 'readVal' undeclared (first use in this function)
+  185 |         return (readVal == testVal);
+      |                 ^~~~~~~
+../Core/Src/ArducamController.c:185:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ArducamController.c:176:17: warning: variable 'newVal' set but not used [-Wunused-but-set-variable]
+  176 |         uint8_t newVal = 0x00;
+      |                 ^~~~~~
+../Core/Src/ArducamController.c:186:1: warning: control reaches end of non-void function [-Wreturn-type]
+  186 | }
+      | ^
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+03:16:51 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55700	    164	   3836	  59700	   e934	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:16:56 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  55700	    164	   3836	  59700	   e934	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+03:22:59 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55800	    164	   3836	  59800	   e998	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:25:13 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  55800	    164	   3836	  59800	   e998	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:25:56 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56084	    164	   3836	  60084	   eab4	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:26:50 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  56084	    164	   3836	  60084	   eab4	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+03:30:13 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56068	    164	   3836	  60068	   eaa4	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+03:51:42 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56152	    164	   3836	  60152	   eaf8	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:08:04 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ArducamController.c:191:6: error: conflicting types for 'i2cRegWrite'; have 'void(ArducamController *, uint8_t,  uint8_t)' {aka 'void(ArducamController *, unsigned char,  unsigned char)'}
+  191 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |      ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:6: note: previous declaration of 'i2cRegWrite' with type 'void(ArducamController *, uint8_t,  uint8_t *, uint16_t)' {aka 'void(ArducamController *, unsigned char,  unsigned char *, short unsigned int)'}
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t, uint8_t*, uint16_t);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:223:9: error: conflicting types for 'i2cRegRead'; have 'uint8_t(ArducamController *, uint8_t)' {aka 'unsigned char(ArducamController *, unsigned char)'}
+  223 | uint8_t i2cRegRead(ArducamController* pCtrl, uint8_t reg){
+      |         ^~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:81:6: note: previous declaration of 'i2cRegRead' with type 'void(ArducamController *, uint8_t,  uint8_t *, uint16_t)' {aka 'void(ArducamController *, unsigned char,  unsigned char *, short unsigned int)'}
+   81 | void i2cRegRead(ArducamController* pCtrl, uint8_t, uint8_t*, uint16_t);
+      |      ^~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'i2cRegRead':
+../Core/Src/ArducamController.c:237:52: error: 'pBuffer' undeclared (first use in this function); did you mean 'setbuffer'?
+  237 |         printf("(I2C) Read 0x%02X from 0x%02X\n", *pBuffer, reg);
+      |                                                    ^~~~~~~
+      |                                                    setbuffer
+../Core/Src/ArducamController.c:237:52: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ArducamController.c: In function 'i2cWriteMultiple':
+../Core/Src/ArducamController.c:246:51: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  246 |                 i2cRegWrite(pCtrl, current->addr, &(current->val), 1);
+      |                                                   ^~~~~~~~~~~~~~~
+      |                                                   |
+      |                                                   uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:191:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  191 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                         ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:246:17: error: too many arguments to function 'i2cRegWrite'
+  246 |                 i2cRegWrite(pCtrl, current->addr, &(current->val), 1);
+      |                 ^~~~~~~~~~~
+../Core/Src/ArducamController.c:191:6: note: declared here
+  191 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |      ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+04:09:17 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ArducamController.c: In function 'setDefaultSettings':
+../Core/Src/ArducamController.c:152:34: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  152 |         i2cRegWrite(pCtrl, 0xFF, &data, 1);
+      |                                  ^~~~~
+      |                                  |
+      |                                  uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |                                                         ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:152:9: error: too many arguments to function 'i2cRegWrite'
+  152 |         i2cRegWrite(pCtrl, 0xFF, &data, 1);
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:6: note: declared here
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:154:34: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  154 |         i2cRegWrite(pCtrl, 0x12, &data, 1);
+      |                                  ^~~~~
+      |                                  |
+      |                                  uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |                                                         ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:154:9: error: too many arguments to function 'i2cRegWrite'
+  154 |         i2cRegWrite(pCtrl, 0x12, &data, 1);
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:6: note: declared here
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:161:34: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  161 |         i2cRegWrite(pCtrl, 0xFF, &data, 1);
+      |                                  ^~~~~
+      |                                  |
+      |                                  uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |                                                         ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:161:9: error: too many arguments to function 'i2cRegWrite'
+  161 |         i2cRegWrite(pCtrl, 0xFF, &data, 1);
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:6: note: declared here
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c:163:34: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  163 |         i2cRegWrite(pCtrl, 0x15, &data, 1);
+      |                                  ^~~~~
+      |                                  |
+      |                                  uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |                                                         ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:163:9: error: too many arguments to function 'i2cRegWrite'
+  163 |         i2cRegWrite(pCtrl, 0x15, &data, 1);
+      |         ^~~~~~~~~~~
+In file included from ../Core/Src/ArducamController.c:2:
+../Core/Inc/ArducamController.h:80:6: note: declared here
+   80 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data);
+      |      ^~~~~~~~~~~
+../Core/Src/ArducamController.c: In function 'i2cRegRead':
+../Core/Src/ArducamController.c:237:52: error: 'pBuffer' undeclared (first use in this function); did you mean 'setbuffer'?
+  237 |         printf("(I2C) Read 0x%02X from 0x%02X\n", *pBuffer, reg);
+      |                                                    ^~~~~~~
+      |                                                    setbuffer
+../Core/Src/ArducamController.c:237:52: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ArducamController.c: In function 'i2cWriteMultiple':
+../Core/Src/ArducamController.c:246:51: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  246 |                 i2cRegWrite(pCtrl, current->addr, &(current->val), 1);
+      |                                                   ^~~~~~~~~~~~~~~
+      |                                                   |
+      |                                                   uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:191:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  191 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                         ~~~~~~~~^~~~
+../Core/Src/ArducamController.c:246:17: error: too many arguments to function 'i2cRegWrite'
+  246 |                 i2cRegWrite(pCtrl, current->addr, &(current->val), 1);
+      |                 ^~~~~~~~~~~
+../Core/Src/ArducamController.c:191:6: note: declared here
+  191 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |      ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+04:10:48 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+../Core/Src/ArducamController.c: In function 'i2cWriteMultiple':
+../Core/Src/ArducamController.c:246:51: warning: passing argument 3 of 'i2cRegWrite' makes integer from pointer without a cast [-Wint-conversion]
+  246 |                 i2cRegWrite(pCtrl, current->addr, &(current->val));
+      |                                                   ^~~~~~~~~~~~~~~
+      |                                                   |
+      |                                                   uint8_t * {aka unsigned char *}
+../Core/Src/ArducamController.c:191:65: note: expected 'uint8_t' {aka 'unsigned char'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  191 | void i2cRegWrite(ArducamController* pCtrl, uint8_t reg, uint8_t data){
+      |                                                         ~~~~~~~~^~~~
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56008	    164	   3836	  60008	   ea68	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:11:02 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56008	    164	   3836	  60008	   ea68	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:25:02 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/SDController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/SDController.d" -MT"Core/Src/SDController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/SDController.o"
+arm-none-eabi-gcc "../Core/Src/WiFiController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/WiFiController.d" -MT"Core/Src/WiFiController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/WiFiController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:222:37: error: 'esp32' undeclared (first use in this function); did you mean 'esp'?
+  222 |         fullStatusReport(&arducam, &esp32, &servoController, &sd); // Prints the statuses of every peripheral
+      |                                     ^~~~~
+      |                                     esp
+../Core/Src/main.c:222:37: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+04:25:28 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56948	    164	   3836	  60948	   ee14	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:31:14 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/WiFiController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/WiFiController.d" -MT"Core/Src/WiFiController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/WiFiController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57000	    164	   3836	  61000	   ee48	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:33:10 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/SDController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/SDController.d" -MT"Core/Src/SDController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/SDController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56992	    164	   3836	  60992	   ee40	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:38:56 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+../Core/Src/ArducamController.c: In function 'picToBase64':
+../Core/Src/ArducamController.c:490:23: error: assignment to expression with array type
+  490 |   pCtrl->base64Buffer = output;
+      |                       ^
+make: *** [Core/Src/subdir.mk:49: Core/Src/ArducamController.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+04:39:50 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56988	    164	   3836	  60988	   ee3c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+04:57:52 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56988	    164	   3836	  60988	   ee3c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+05:31:46 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56996	    164	   3836	  60996	   ee44	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 

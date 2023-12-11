@@ -42,7 +42,7 @@ void signalBusy(WiFiController* pCtrl){
 
 HAL_StatusTypeDef getNextCMD(WiFiController* pCtrl, char *pCMDBuffer){
 	HAL_StatusTypeDef cmdStatus = HAL_OK;
-	printf("Waiting for next CMD...\n");
+	printf("Waiting for next CMD...\n\r");
 	signalReady(pCtrl);
 	HAL_Delay(ESP_READY_DELAY); // Wait for ESP to send the data
 	cmdStatus = HAL_UART_Receive(pCtrl->pUARTHandle, (uint8_t*) pCMDBuffer, 8, ESP_CMD_TIMEOUT); // Waits 60s for a CMD, then yields control
@@ -79,5 +79,9 @@ void clearCMDBuffer(WiFiController* pCtrl){
 HAL_StatusTypeDef sendData(WiFiController* pCtrl, void* pDataBuffer, uint16_t size){
 	printf("Sending %u bytes to ESP\n", size);
 	pCtrl->status = HAL_UART_Transmit(pCtrl->pUARTHandle, (const uint8_t*) pDataBuffer, size, HAL_MAX_DELAY);
+	if(pCtrl->status != HAL_OK){
+		printf("FAILED Sending data to ESP\n");
+		printStatus(pCtrl);
+	}
 	return pCtrl -> status;
 }

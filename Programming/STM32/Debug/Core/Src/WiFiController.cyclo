@@ -4,4 +4,4 @@
 ../Core/Src/WiFiController.c:39:6:signalBusy	1
 ../Core/Src/WiFiController.c:43:19:getNextCMD	5
 ../Core/Src/WiFiController.c:71:6:clearCMDBuffer	2
-../Core/Src/WiFiController.c:79:19:sendData	1
+../Core/Src/WiFiController.c:79:19:sendData	2

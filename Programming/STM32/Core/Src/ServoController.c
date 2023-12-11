@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 
+// TODO: Make another Level shifter for Right_Servo
+// TODO : Add a safety switch for the Servo Power Supply (or a 9v)
 
 HAL_StatusTypeDef initServoController(ServoController *pCtrl){
 	printf("Initializing Servo Controller\n");
@@ -54,9 +56,9 @@ void setServoPosition(Servo servo, int position){
 	float pulseTime = .001 + (degrees*secPerDeg);
 	float dutyCycle = (pulseTime / .02);
 
-	CCR1Val = (uint32_t) (dutyCycle * 100);
+	CCR1Val = (uint32_t) (dutyCycle * 1000);
 
-	printf("CCR Val = %lu\n", CCR1Val);
+	//printf("CCR Val = %lu\n", CCR1Val);
 	servo.pTIMHandle->Instance->CCR1 = CCR1Val;
 	HAL_Delay(SERVO_DELAY);
 
@@ -77,22 +79,22 @@ HAL_StatusTypeDef resetAllServos(ServoController *pCtrl){
 //Helps test the servos
 void sweepServos(ServoController* pCtrl){
 	Servo servo;
-	for(int i = 0; i < 200; i++){
+	/*for(int i = 0; i < 200; i++){
 		uint32_t CCR1Val = i;
 		servo = pCtrl->servoList[1];
 		printf("CCR Val = %lu\n", CCR1Val);
 		servo.pTIMHandle->Instance->CCR1 = CCR1Val;
 		HAL_Delay(SERVO_DELAY);
-	}
-	/*for(int i = 0; i < pCtrl->numServos; i++){
+	}*/
+	for(int i = 0; i < pCtrl->numServos; i++){
 		servo = pCtrl->servoList[i];
 		setServoPosition(servo, SERVO_POS_LEFT);
 		HAL_Delay(SERVO_DELAY);
-		setServoPosition(servo, SERVO_POS_RIGHT);
-		HAL_Delay(SERVO_DELAY);
 		setServoPosition(servo, SERVO_POS_CENTER);
 		HAL_Delay(SERVO_DELAY);
-	}*/
+		setServoPosition(servo, SERVO_POS_RIGHT);
+		HAL_Delay(SERVO_DELAY);
+	}
 }
 
 // Generates a random integer and flicks a card from the left and right piles one by one based on the bits of the number generated

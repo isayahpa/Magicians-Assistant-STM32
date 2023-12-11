@@ -1,8 +1,8 @@
-../Core/Src/ServoController.c:7:19:initServoController	16	static
-../Core/Src/ServoController.c:18:6:addServo	32	static
-../Core/Src/ServoController.c:40:6:setServoPosition	56	static
-../Core/Src/ServoController.c:65:19:resetAllServos	32	static
-../Core/Src/ServoController.c:78:6:sweepServos	40	static
-../Core/Src/ServoController.c:101:19:shuffle	48	static
-../Core/Src/ServoController.c:144:6:drawCard	32	static
-../Core/Src/ServoController.c:167:19:disconnectServos	32	static
+../Core/Src/ServoController.c:9:19:initServoController	16	static
+../Core/Src/ServoController.c:20:6:addServo	32	static
+../Core/Src/ServoController.c:42:6:setServoPosition	56	static
+../Core/Src/ServoController.c:67:19:resetAllServos	32	static
+../Core/Src/ServoController.c:80:6:sweepServos	32	static
+../Core/Src/ServoController.c:103:19:shuffle	48	static
+../Core/Src/ServoController.c:146:6:drawCard	32	static
+../Core/Src/ServoController.c:169:19:disconnectServos	32	static

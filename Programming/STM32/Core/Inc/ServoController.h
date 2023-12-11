@@ -6,7 +6,7 @@
 
 #define MAX_NUM_SERVOS 5
 
-#define SERVO_DELAY 2000
+#define SERVO_DELAY 500
 #define SERVO_POS_LEFT 0
 #define SERVO_POS_CENTER 90
 #define SERVO_POS_RIGHT 180
