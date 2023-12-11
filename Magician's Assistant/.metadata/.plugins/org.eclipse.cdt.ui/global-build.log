@@ -1238,3 +1238,313 @@ Finished building: default.size.stdout
  
 Finished building: MagiciansAssistant.list
  
+12:29:45 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  56996	    164	   3836	  60996	   ee44	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+12:40:54 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  56996	    164	   3836	  60996	   ee44	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+12:56:42 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57012	    164	   3836	  61012	   ee54	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+12:57:44 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57012	    164	   3836	  61012	   ee54	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+12:59:47 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57060	    164	   3836	  61060	   ee84	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+13:01:29 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57060	    164	   3836	  61060	   ee84	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+13:04:47 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57060	    164	   3836	  61060	   ee84	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+13:13:06 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc "../Core/Src/SDController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/SDController.d" -MT"Core/Src/SDController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/SDController.o"
+arm-none-eabi-gcc "../Core/Src/ServoController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ServoController.d" -MT"Core/Src/ServoController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ServoController.o"
+arm-none-eabi-gcc "../Core/Src/WiFiController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/WiFiController.d" -MT"Core/Src/WiFiController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/WiFiController.o"
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57220	    164	   3836	  61220	   ef24	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+13:17:31 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57228	    164	   3836	  61228	   ef2c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+13:20:14 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  30652	    136	   2672	  33460	   82b4	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+13:22:07 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57276	    164	   3836	  61276	   ef5c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+13:26:17 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+13:57:46 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:00:13 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+../Core/Src/helpers.c: In function 'printSuccess':
+../Core/Src/helpers.c:78:19: warning: embedded '\0' in format [-Wformat-contains-nul]
+   78 |         printf("%s\0", line);
+      |                   ^~
+../Core/Src/helpers.c: In function 'printFailure':
+../Core/Src/helpers.c:85:19: warning: embedded '\0' in format [-Wformat-contains-nul]
+   85 |         printf("%s\0", line);
+      |                   ^~
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+14:09:48 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:12:56 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57192	    164	   3836	  61192	   ef08	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+14:16:29 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+14:20:57 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57244	    164	   3836	  61244	   ef3c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+14:21:39 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57244	    164	   3836	  61244	   ef3c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:22:33 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57244	    164	   3836	  61244	   ef3c	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:25:56 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/ArducamController.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ArducamController.d" -MT"Core/Src/ArducamController.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ArducamController.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+14:28:22 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:28:40 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:29:47 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:31:44 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/helpers.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/helpers.d" -MT"Core/Src/helpers.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/helpers.o"
+arm-none-eabi-gcc -o "MagiciansAssistant.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\School\ENEE408A\Programming\STM32\STM32L476RGTX_FLASH.ld" -Wl,-Map="MagiciansAssistant.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MagiciansAssistant.elf
+ 
+arm-none-eabi-size  MagiciansAssistant.elf 
+arm-none-eabi-objdump -h -S MagiciansAssistant.elf  > "MagiciansAssistant.list"
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+Finished building: MagiciansAssistant.list
+ 
+14:34:49 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:35:17 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 
+14:36:00 **** Incremental Build of configuration Debug for project MagiciansAssistant ****
+make -j4 all 
+arm-none-eabi-size  MagiciansAssistant.elf 
+   text	   data	    bss	    dec	    hex	filename
+  57236	    164	   3836	  61236	   ef34	MagiciansAssistant.elf
+Finished building: default.size.stdout
+ 

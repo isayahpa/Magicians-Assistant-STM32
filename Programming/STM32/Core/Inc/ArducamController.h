@@ -49,7 +49,7 @@
 #define SPI_READ_MASK 0x7F
 
 #define MAX_PIC_BUF_SIZE 4096
-#define MAX_BASE64_BUF_SIZE (MAX_PIC_BUF_SIZE * (4/3)) + 1
+#define MAX_BASE64_BUF_SIZE ((MAX_PIC_BUF_SIZE * 4)/3) + 1
 typedef struct ArducamController ArducamController;
 
 struct ArducamController{

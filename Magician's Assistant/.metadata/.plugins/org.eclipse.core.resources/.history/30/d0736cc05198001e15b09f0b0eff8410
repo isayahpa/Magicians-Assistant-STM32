@@ -1,0 +1,88 @@
+
+// Just some useful functions :)
+
+#include "helpers.h"
+#include "string.h"
+UART_HandleTypeDef *pHUART;
+
+
+
+void initHelpers(UART_HandleTypeDef* pUHandle){
+	pHUART = pUHandle;
+}
+
+// Allows for printf() use
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+
+	HAL_UART_Transmit(pHUART, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+	if(ch == '\n'){
+		HAL_UART_Transmit(pHUART, (uint8_t *)"\r", 1, HAL_MAX_DELAY);
+	}
+	return ch;
+}
+
+//Returns the value of the bit at index in num
+//Ex: checkBit(0x05, 2) == 1
+int checkBit(uint32_t num, int index){
+	return (int) ((num >> index) & 0x01);
+}
+
+
+void i2cScan(I2C_HandleTypeDef *pHI2C){
+	HAL_StatusTypeDef ret;
+	// I2C Scan
+	for(int i = 0; i < 128; i++){
+		ret = HAL_I2C_IsDeviceReady(pHI2C, (uint16_t)i, 3, 10000);
+		if(ret == HAL_OK){
+			printf("Device found at Addr 0x%02X", i);
+		}
+	}
+}
+
+char* stat2Str(HAL_StatusTypeDef status){
+	switch(status){
+		case HAL_OK:
+			return "HAL_OK\0";
+		case HAL_ERROR:
+			return "HAL_ERROR\0";
+		case HAL_BUSY:
+			return "HAL_BUSY\0";
+		case HAL_TIMEOUT:
+			return "HAL_TIMEOUT\0";
+		default:
+			return "UNKNOWN STATUS\0";
+	}
+}
+
+// Trying to introduce a little polymorphism-ease
+typedef struct GenericController{
+	HAL_StatusTypeDef status;
+} GenericController;
+
+void printStatus(void* pCtrl){
+	HAL_StatusTypeDef status = ((GenericController*) pCtrl)->status;
+	printf("\t|^ Status : %s\n", stat2Str(status));
+}
+
+void printSuccess(const char* msg){
+	char* line = "SUCCESS ";
+	strcat(line, msg);
+	strcat(line, "\n");
+	printf("%s", line);
+}
+
+void printFailure(const char* msg){
+	char* line = "FAILED ";
+	strcat(line, msg);
+	strcat(line, "\n");
+	printf(line);
+}
+
+

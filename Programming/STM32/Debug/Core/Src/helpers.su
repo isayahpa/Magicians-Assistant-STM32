@@ -4,3 +4,5 @@
 ../Core/Src/helpers.c:38:6:i2cScan	24	static
 ../Core/Src/helpers.c:49:7:stat2Str	16	static
 ../Core/Src/helpers.c:69:6:printStatus	24	static
+../Core/Src/helpers.c:74:6:printSuccess	32	static
+../Core/Src/helpers.c:81:6:printFailure	24	static

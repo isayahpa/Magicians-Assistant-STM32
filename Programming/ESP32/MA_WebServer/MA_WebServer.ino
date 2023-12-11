@@ -131,8 +131,11 @@ void loop(){
             }
 
             client.println("<!DOCTYPE html>");
+            client.println("<html lang=\"en\">");
             client.println("<head>");
+            client.println("<meta charset=\"utf-8\">");
             client.println("<title>The Magician's Assistant</title>");
+            
             client.println("</head>");
 
             client.println("<body>");
@@ -156,7 +159,7 @@ void loop(){
 
             //Preview the photo data when photos are sent
             if(showPreview){
-              showPreviewInClient(client);
+              showPreviewInClient(&client);
             }
 
             client.println("<p>Status: " + status + "</p>");
@@ -190,9 +193,9 @@ void loop(){
 void sendCMD(String cmd){
 
   unsigned long timeBefSend = micros();
-  flushSTMRXBuffer(); // Clear the RX buffer in case we need to take data in after the command
+  //flushSTMRXBuffer(); // Clear the RX buffer in case we need to take data in after the command
   STMSerialPort.print(cmd.c_str()); // Send CMD
-  STMSerialPort.flush();
+  STMSerialPort.flush(); // Wait until the full CMD is sent
   unsigned long timeAftSend = micros();
   Serial.println("Took " + String(timeAftSend - timeBefSend) + "μs to send CMD.");
   
@@ -200,7 +203,7 @@ void sendCMD(String cmd){
     Serial.println("Timed out waiting for STM, must be busy..."); 
     return; // Return on timeout so that the client can still get updated
   }
-
+  delay(1000);
   int nBytesToRead = STMSerialPort.available();
   Serial.println("STM Completed - Received " + String(nBytesToRead) + " bytes of data");
   Serial.println("Updating ESP State");
@@ -241,19 +244,19 @@ bool waitForSTM(){
   return true;
 }
 
-void showPreviewInClient(WiFiClient client){
+void showPreviewInClient(WiFiClient *pClient){
   Serial.println("Reading Base64 Picture Data...");
   //if(client){
     int c;
 
-    client.print("<img src=\"data:image/jpg;base64, ");
+    pClient->print("<img src=\"data:image/jpg;base64, ");
     Serial.print("<img src=\"data:image/jpg;base64, ");
     while(STMSerialPort.available() > 0){
       c = STMSerialPort.read();
-      client.print((char)c);
+      pClient->print((char)c);
       Serial.print((char)c);
     }
-    client.print("\" alt=\"Arducam Preview\"/>\n");
+    pClient->print("\" alt=\"Arducam Preview\"/>\n");
     Serial.print("\" alt=\"Arducam Preview\"/>\n");
   //} else {
     //Serial.println("FAILED Show Preview in Client. Client was NULL.");

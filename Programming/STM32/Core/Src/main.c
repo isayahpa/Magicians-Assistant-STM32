@@ -155,6 +155,7 @@ int main(void)
   char* filename = "image.jpg";
   initSD(&sd);
 
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -180,9 +181,10 @@ int main(void)
 			printf(STATUS_SNAP);
 			if(singleCapture(&arducam) == HAL_OK){
 				if(writeFile(&sd, filename, arducam.pictureBuffer, arducam.pictureBufferSize) == HAL_OK){ //Saves JPG data to SD
-					printf("SUCCESS Saved Single Snap\n");
 					picToBase64(&arducam);
-					sendData(&esp, arducam.base64Buffer, arducam.base64Size);
+					if(sendData(&esp, arducam.base64Buffer, arducam.base64Size) == HAL_OK){
+						printSuccess("Sent Base64 Photo to ESP");
+					}
 				}
 			}
 		} else if (strcmp(pCMDBuffer, ARCHIDEKT) == 0){

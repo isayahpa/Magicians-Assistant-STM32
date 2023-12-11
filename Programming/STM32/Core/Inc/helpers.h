@@ -10,4 +10,6 @@ void initHelpers(UART_HandleTypeDef* pHUART);
 void i2cScan(I2C_HandleTypeDef *pHI2C);
 char* stat2Str(HAL_StatusTypeDef status);
 void printStatus(void* pCtrl);
+void printSuccess(const char* msg);
+void printFailure(const char* msg);
 #endif /* INC_HELPERS_H_ */
